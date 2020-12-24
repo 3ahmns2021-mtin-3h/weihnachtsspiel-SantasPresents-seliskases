@@ -20,13 +20,17 @@ public class WeihnachtsmannController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        print("Collision");
+
         switch (collision.gameObject.tag)
         {
             case "Present":
                 CarryPresent(collision.gameObject);                
+                Destroy(collision.gameObject);
                 break;
-            case "Stone":
+            case "Rock":
                 FallOver();
+                Destroy(collision.gameObject);
                 break;
         }
     }
@@ -47,11 +51,13 @@ public class WeihnachtsmannController : MonoBehaviour
     {
         //Trigger animation / sound
         numPresents = 0;
+        float time = 0;
 
         while (true)
         {
-            float time = Time.deltaTime;
-            if(time >= fallDelay)
+            time += Time.deltaTime;
+
+            if (time >= fallDelay)
             {
                 break;
             }

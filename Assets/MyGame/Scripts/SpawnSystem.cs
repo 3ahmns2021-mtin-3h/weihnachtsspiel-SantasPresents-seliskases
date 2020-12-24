@@ -6,7 +6,6 @@ public class SpawnSystem : MonoBehaviour
 {
     public GameObject present;
     public GameObject rock;
-    public Canvas canvas;
     public float xResolution;
     public float spawnMinTime;
     public float spawnMaxTime;
@@ -18,8 +17,8 @@ public class SpawnSystem : MonoBehaviour
 
     private void Awake()
     {
-        Vector2 leftTopCorner = new Vector2(canvas.pixelRect.width / -2, canvas.pixelRect.height/2);
-        Vector2 rightTopCorner = new Vector2(canvas.pixelRect.width / 2, canvas.pixelRect.height/2);
+        Vector2 leftTopCorner = new Vector2(GameManager.canvas.pixelRect.width / -2, GameManager.canvas.pixelRect.height/2);
+        Vector2 rightTopCorner = new Vector2(GameManager.canvas.pixelRect.width / 2, GameManager.canvas.pixelRect.height/2);
 
         float xSummand = (rightTopCorner.x - leftTopCorner.x) / (xResolution + 1);
         List<float> xCoordinates = new List<float>();
@@ -30,8 +29,8 @@ public class SpawnSystem : MonoBehaviour
         }
 
         empty = new GameObject("Collectables");
-        empty.transform.parent = canvas.transform;
-        empty.transform.position = new Vector3(canvas.pixelRect.width / 2, canvas.pixelRect.height / 2, 0);
+        empty.transform.parent = GameManager.canvas.transform;
+        empty.transform.position = new Vector3(GameManager.canvas.pixelRect.width / 2, GameManager.canvas.pixelRect.height / 2, 0);
 
         SetSpawnTime();
     }
