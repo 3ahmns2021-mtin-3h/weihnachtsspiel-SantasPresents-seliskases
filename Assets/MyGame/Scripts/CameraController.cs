@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Transform target;
+    public Vector3 cameraOffset;
+    public float followSpeed;
+    public float xMin;
+    Vector3 velocity = Vector3.zero;
 
-    // Update is called once per frame
-    void Update()
+    private new Camera camera;
+
+    private void Start()
     {
-        
+        camera = Camera.main;
+    }
+    private void FixedUpdate()
+    {
+        Vector3 targetPos = target.position + cameraOffset;
+        Vector3 clampedPos = new Vector3(Mathf.Clamp(targetPos.x, xMin, float.MaxValue), targetPos.y, targetPos.z);
+        Vector3 smoothPos = Vector3.SmoothDamp(camera.gameObject.transform.position, clampedPos, ref velocity, followSpeed * Time.deltaTime);
+
+        camera.gameObject.transform.position = smoothPos;
     }
 }
