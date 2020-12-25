@@ -9,12 +9,13 @@ public class GameManager : MonoBehaviour
     public Canvas canvasObject;
     [Space]
     public Transform spawnPosition;
-    public Sack sack;
+    public Sack sackScript;
 
     private void Awake()
     {
         SetWeihnachtsmann(Instantiate(weihnachtsmannPrefab, spawnPosition.position, Quaternion.identity));
         SetCanvas();
+        SetSack();
 
         weihnachtsmann.transform.SetParent(canvas.transform);
     }
@@ -69,5 +70,13 @@ public class GameManager : MonoBehaviour
         canvas = canvasObject;
     }
     public static Canvas canvas;
+    #endregion
+
+    #region Sack
+    private void SetSack()
+    {
+        sack = sackScript;
+    }
+    public static Sack sack;
     #endregion
 }

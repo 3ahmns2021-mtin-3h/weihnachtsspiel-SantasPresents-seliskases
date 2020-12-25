@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Timer : MonoBehaviour
+public class UI : MonoBehaviour
 {
     public GameManager gameManager;
     public TextMeshProUGUI timer;
+    public TextMeshProUGUI presentCounter;
+
     public float startTime = 60;
 
     private float time;
@@ -27,7 +29,9 @@ public class Timer : MonoBehaviour
         else
         {
             gameManager.EndGame();
-        }
+        }       
+        
+        presentCounter.text = GameManager.sack.presents.ToString();               
     }
 
     private void DisplayTime(float _timeToDisplay)

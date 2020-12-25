@@ -8,9 +8,15 @@ public class WeihnachtsmannController : MonoBehaviour
     public float speed = 100f;
     public float fallDelay;
     public int maxPresents = 3;
+    [HideInInspector]
+    public int numPresents;
+    public static WeihnachtsmannController instance;
 
-    private int numPresents;
-    
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Update()
     {
         float moveHorizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime;

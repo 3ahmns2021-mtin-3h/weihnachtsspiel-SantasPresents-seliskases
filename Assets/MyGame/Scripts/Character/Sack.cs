@@ -7,7 +7,7 @@ public class Sack : MonoBehaviour
     public float maxDistance;
     public KeyCode keyCode;
     [HideInInspector]
-    public int presents;
+    public int presents = 0;
 
     private void Update()
     {
@@ -15,7 +15,9 @@ public class Sack : MonoBehaviour
 
         if (Distance(transform.position, weihnachtsmannPos) <= maxDistance && Input.GetKeyDown(keyCode))
         {
-            presents++;
+            int tempNumPresents = WeihnachtsmannController.instance.numPresents;
+            presents += tempNumPresents;
+            WeihnachtsmannController.instance.numPresents -= tempNumPresents;
         }
     }
 
@@ -25,5 +27,11 @@ public class Sack : MonoBehaviour
         float zDistance = endPoint.z - startPoint.z;
 
         return Mathf.Sqrt(Mathf.Pow(xDistance, 2) + Mathf.Pow(zDistance, 2));
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = new Color(255, 0, 0, 250);
+        Gizmos.DrawSphere(transform.position, maxDistance);
     }
 }
