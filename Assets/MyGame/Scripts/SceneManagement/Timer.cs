@@ -5,6 +5,7 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
+    public GameManager gameManager;
     public TextMeshProUGUI timer;
     public float startTime = 60;
 
@@ -25,7 +26,7 @@ public class Timer : MonoBehaviour
         }
         else
         {
-            EndGame();
+            gameManager.EndGame();
         }
     }
 
@@ -37,10 +38,5 @@ public class Timer : MonoBehaviour
         float _seconds = Mathf.FloorToInt(_timeToDisplay % 60);
 
         timer.text = string.Format("{0:00}:{1:00}", _minutes, _seconds);
-    }
-
-    private void EndGame()
-    {
-        //something
     }
 }
