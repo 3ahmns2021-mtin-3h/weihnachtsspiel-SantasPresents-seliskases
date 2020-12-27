@@ -51,6 +51,7 @@ public class WeihnachtsmannController : MonoBehaviour
         numPresents += 1;
         Destroy(present);
         //Trigger carry-animation
+        //Add a present to the Weihnachtsmann-illustration
     }
 
     private void FallOver()

@@ -7,9 +7,9 @@ public class CameraController : MonoBehaviour
     public Vector3 cameraOffset;
     public float followSpeed;
     public float xMin;
-    Vector3 velocity = Vector3.zero;
 
-    public Transform target;
+    private Vector3 velocity = Vector3.zero;
+    private Transform target;
     private new Camera camera;
 
     private void Start()
