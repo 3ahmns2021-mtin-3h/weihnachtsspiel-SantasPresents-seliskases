@@ -1,28 +1,25 @@
 # Template2D-Unity202015f1
 
 ### Project description: 
-Introduction/Project summary 
+Recap Project: C# basics, Unity, git/GitHub workflow
 
 ### Development platform: 
-(OS, Unity Version, Visual Studio Version, used SDKs)
+(OS, Unity Version, Visual Studio Version, used SDKs) Windows 10, Unity 2020.1.5.1f, Visual Studio 2019
 
 ### Target platform: 
-WebGL, Mobile, VR Device incl. reference resolution 
+WebGL (Ref Res 960x600)
 
 ### Visuals: 
 Screenshots (concept and experience), Video
 
-### Necessary setup/execution steps: 
-Installation process, e.g. step by step instructions that I can run the project after cloning it
-
 ### Third party material: 
-(if used Fonts, Sounds, Music, Graphics, Materials, Code etc.)
+Winter Wondeland Asset
 
 ### Project state: 
-incl. progress in percent
+Progress: 50%
 
 ### Limitations: 
 
 ### Lessons Learned: 
 
-Copyright by you :)
+Copyright by seliskases
