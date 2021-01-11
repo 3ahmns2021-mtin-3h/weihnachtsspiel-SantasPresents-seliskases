@@ -10,7 +10,7 @@ public class CameraController : MonoBehaviour
 
     private Vector3 velocity = Vector3.zero;
     private Transform target;
-    private new Camera camera;
+    private new Camera camera; 
 
     private void Start()
     {
@@ -24,5 +24,5 @@ public class CameraController : MonoBehaviour
         Vector3 smoothPos = Vector3.SmoothDamp(camera.gameObject.transform.position, clampedPos, ref velocity, followSpeed * Time.deltaTime);
 
         camera.gameObject.transform.position = smoothPos;
-    }
+    } 
 }

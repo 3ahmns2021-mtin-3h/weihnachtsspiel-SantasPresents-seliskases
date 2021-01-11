@@ -19,8 +19,6 @@ public class Bird : MonoBehaviour
 
         if (distance <= detectionRadius && currentlyTargeting == false)
         {
-            Debug.Log("Targeting");
-
             StopAllCoroutines();
 
             float duration = distance / maxSpeed;
@@ -30,8 +28,6 @@ public class Bird : MonoBehaviour
         }
         else if(currentlySearching == false && currentlyTargeting == false)
         {
-            Debug.Log("Searching");
-
             StopAllCoroutines();
 
             float x = Random.Range(transform.position.x - 200, transform.position.x + 200);
