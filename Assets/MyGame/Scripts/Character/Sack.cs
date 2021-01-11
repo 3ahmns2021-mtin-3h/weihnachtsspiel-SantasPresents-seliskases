@@ -32,6 +32,5 @@ public class Sack : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(255, 0, 0, 250);
-        //Gizmos.DrawSphere(transform.position, maxDistance);
     }
 }

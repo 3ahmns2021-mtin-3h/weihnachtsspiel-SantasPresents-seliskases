@@ -21,7 +21,7 @@ public class WeihnachtsmannController : MonoBehaviour
     {
         float moveHorizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
         transform.position += new Vector3(moveHorizontal, 0, 0);
-        //Trigger movement animation / sound
+        //Trigger movement animation and sound
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -56,7 +56,7 @@ public class WeihnachtsmannController : MonoBehaviour
 
     private void FallOver()
     {
-        //Trigger animation / sound
+        //Trigger animation and sound
         numPresents = 0;
         float time = 0;
 
