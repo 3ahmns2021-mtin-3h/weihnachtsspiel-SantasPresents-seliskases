@@ -1,10 +1,10 @@
 # Template2D-Unity202015f1
 
 ### Project description: 
-Recap Project: C# basics, Unity, git/GitHub workflow
+Santa Claus has to recollect his presents without getting hit by a rock
 
 ### Development platform: 
-(OS, Unity Version, Visual Studio Version, used SDKs) Windows 10, Unity 2020.1.5.1f, Visual Studio 2019
+Windows 10, Unity 2020.1.5.1f, Visual Studio 2019
 
 ### Target platform: 
 WebGL (Ref Res 960x600)
