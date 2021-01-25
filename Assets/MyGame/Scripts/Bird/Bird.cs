@@ -9,6 +9,7 @@ public class Bird : MonoBehaviour
     public float minSpeed;
     public float maxSpeed;
     public float detectionRadius;
+    public float maxDistance;
 
     private bool currentlyTargeting = false;
     private bool currentlySearching = false;
@@ -17,6 +18,7 @@ public class Bird : MonoBehaviour
     {
         float distance = Distance(transform.position, GameManager.sack.transform.position);
 
+        //Targeting
         if (distance <= detectionRadius && currentlyTargeting == false)
         {
             StopAllCoroutines();
@@ -26,13 +28,28 @@ public class Bird : MonoBehaviour
             currentlyTargeting = true;
             StartCoroutine(MoveTowards(GameManager.sack.transform.position, targetCurve, duration));
         }
-        else if(currentlySearching == false && currentlyTargeting == false)
+        // Searching
+        else if(currentlySearching == false && currentlyTargeting == false && distance < maxDistance)
         {
             StopAllCoroutines();
 
             float x = Random.Range(transform.position.x - 200, transform.position.x + 200);
             float y = Random.Range(transform.position.y - 200, transform.position.y + 200);
             Vector3 destination = new Vector3(x, y, 0);
+
+            float destinationDistance = Distance(transform.position, destination);
+            float currentSpeed = Random.Range(minSpeed, maxSpeed);
+            float duration = destinationDistance / currentSpeed;
+
+            currentlySearching = true;
+            StartCoroutine(MoveTowards(destination, standardCurve, duration));
+        }
+        // Back to center
+        else if(currentlySearching == false && currentlyTargeting == false && distance >= maxDistance)
+        {
+            StopAllCoroutines();
+
+            Vector3 destination = new Vector3(0, 0, 0);
 
             float destinationDistance = Distance(transform.position, destination);
             float currentSpeed = Random.Range(minSpeed, maxSpeed);

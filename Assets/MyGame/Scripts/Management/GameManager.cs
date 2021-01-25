@@ -28,26 +28,26 @@ public class GameManager : MonoBehaviour
         string playerName = PlayerPrefs.GetString("playerName");
         string tempName;
 
-        string highScorePos = "highScorePos";
+        string highScore = "highScore";
         string highScoreName = "highScoreName";
         
 
-        for (int i = 1; i <= 5; i++)
+        for (int i = 1; i <= 3; i++)
         {
-            if (PlayerPrefs.GetInt(highScorePos + i) < playerScore)
+            if (PlayerPrefs.GetInt(highScore + i) < playerScore)
             {
-                tempScore = PlayerPrefs.GetInt(highScorePos + i);
-                PlayerPrefs.SetInt(highScorePos + i, playerScore);
+                tempScore = PlayerPrefs.GetInt(highScore + i);
+                PlayerPrefs.SetInt(highScore + i, playerScore);
 
                 tempName = PlayerPrefs.GetString(highScoreName + i);
                 PlayerPrefs.SetString(highScoreName + i, playerName);
 
-                if (i < 5)
+                if (i < 3)
                 {
                     int j = i + 1;
 
-                    playerScore = PlayerPrefs.GetInt(highScorePos + j);
-                    PlayerPrefs.SetInt(highScorePos + j, tempScore);
+                    playerScore = PlayerPrefs.GetInt(highScore + j);
+                    PlayerPrefs.SetInt(highScore + j, tempScore);
 
                     playerName = PlayerPrefs.GetString(highScoreName + j);
                     PlayerPrefs.SetString(highScoreName + j, tempName);

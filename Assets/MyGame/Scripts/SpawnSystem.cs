@@ -6,12 +6,16 @@ public class SpawnSystem : MonoBehaviour
 {
     public GameObject present;
     public GameObject rock;
+    public GameObject bird;
     public float xResolution;
     public float spawnMinTime;
     public float spawnMaxTime;
     public float spawnHeight;
+    public float birdSpawnTime;
 
     private float nextSpawnTime;
+    private float time;
+    private bool birdSpawned = false;
     private GameObject empty;
     private List<Vector2> spawnPoints = new List<Vector2>();
 
@@ -36,13 +40,20 @@ public class SpawnSystem : MonoBehaviour
     }
 
     private void Update()
-    {        
+    {
+        time += Time.deltaTime;
         nextSpawnTime -= Time.deltaTime;
 
         if(nextSpawnTime <= 0)
         {
-            Spawn();
+            SpawnPresent();
             SetSpawnTime();
+        }
+
+        if(time >= birdSpawnTime && !birdSpawned)
+        {
+            birdSpawned = true;
+            SpawnBird();
         }
     }
 
@@ -51,7 +62,8 @@ public class SpawnSystem : MonoBehaviour
         nextSpawnTime = Random.Range(spawnMinTime, spawnMaxTime);
     }
 
-    private void Spawn()
+
+    private void SpawnPresent()
     {
         Vector2 spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
         int spawnIndex = Random.Range(1, 3);
@@ -67,6 +79,14 @@ public class SpawnSystem : MonoBehaviour
                 spawnedRock.transform.SetParent(empty.transform, false);
                 break;
         }
+    }
+
+    private void SpawnBird()
+    {
+        Vector2 spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
+        GameObject spawnedBird= Instantiate(bird, spawnPoint, Quaternion.identity);
+
+        spawnedBird.transform.SetParent(GameManager.canvas.transform, false);
     }
 }
     
