@@ -29,7 +29,7 @@ public class Bird : MonoBehaviour
             float duration = distance / maxSpeed;
 
             currentlyTargeting = true;
-            StartCoroutine(MoveTowards(GameManager.sack.transform.position, targetCurve, duration));
+            StartCoroutine(MoveTowards(GameManager.sack.transform.position, targetCurve, duration, true));
             Destroy(gameObject, duration);
         }
 
@@ -53,7 +53,7 @@ public class Bird : MonoBehaviour
             float duration = destinationDistance / currentSpeed;
 
             currentlySearching = true;
-            StartCoroutine(MoveTowards(destination, standardCurve, duration));
+            StartCoroutine(MoveTowards(destination, standardCurve, duration, false));
         }
         
         // Back to center, triggered at spawn of bird
@@ -68,7 +68,7 @@ public class Bird : MonoBehaviour
             float duration = destinationDistance / currentSpeed;
 
             currentlySearching = true;
-            StartCoroutine(MoveTowards(destination, standardCurve, duration));
+            StartCoroutine(MoveTowards(destination, standardCurve, duration, false));
         }
 
         //Scare off
@@ -77,7 +77,7 @@ public class Bird : MonoBehaviour
             StopAllCoroutines();
             currentlyScared = true;
 
-            StartCoroutine(MoveTowards(new Vector3(transform.position.x - 1000, transform.position.y, transform.position.z), targetCurve, 2));
+            StartCoroutine(MoveTowards(new Vector3(transform.position.x - 1000, transform.position.y, transform.position.z), targetCurve, 2, false));
             Destroy(gameObject, 3f);
         }
     }
@@ -90,7 +90,7 @@ public class Bird : MonoBehaviour
         return Mathf.Sqrt(Mathf.Pow(xDistance, 2) + Mathf.Pow(zDistance, 2));
     }
 
-    private IEnumerator MoveTowards(Vector3 destination, AnimationCurve curve, float duration)
+    private IEnumerator MoveTowards(Vector3 destination, AnimationCurve curve, float duration, bool targetingSack)
     {
         YieldInstruction instruction = new WaitForEndOfFrame();
 
@@ -107,6 +107,11 @@ public class Bird : MonoBehaviour
             {
                 currentlySearching = false;
                 currentlyTargeting = false;
+
+                if (targetingSack)
+                {
+                    GameManager.sack.presents = 0;
+                }
 
                 break;
             }   

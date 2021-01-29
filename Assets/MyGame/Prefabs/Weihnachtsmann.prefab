@@ -90,8 +90,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 126.4
-  fallDelay: 1
+  paralyzeDelay: 2
   maxPresents: 3
+  numPresents: 0
 --- !u!61 &6575101298625809333
 BoxCollider2D:
   m_ObjectHideFlags: 0

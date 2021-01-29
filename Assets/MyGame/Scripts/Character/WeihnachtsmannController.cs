@@ -6,11 +6,13 @@ public class WeihnachtsmannController : MonoBehaviour
 {
     [Range(50, 150)]
     public float speed = 100f;
-    public float fallDelay;
+    public float paralyzeDelay;
     public int maxPresents = 3;
     [HideInInspector]
     public int numPresents;
     public static WeihnachtsmannController instance;
+
+    private bool paralyzed = false;
 
     private void Awake()
     {
@@ -18,10 +20,13 @@ public class WeihnachtsmannController : MonoBehaviour
     }
 
     private void Update()
-    {       
-        float moveHorizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-        transform.position += new Vector3(moveHorizontal, 0, 0);
-        //Trigger movement animation and sound
+    {
+        if (!paralyzed)
+        {
+            float moveHorizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+            transform.position += new Vector3(moveHorizontal, 0, 0);
+            //Trigger movement animation and sound
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -35,7 +40,7 @@ public class WeihnachtsmannController : MonoBehaviour
                 Destroy(collision.gameObject);
                 break;
             case "Rock":
-                FallOver();
+                StartCoroutine(Paralyze());
                 Destroy(collision.gameObject);
                 break;
         }
@@ -54,9 +59,11 @@ public class WeihnachtsmannController : MonoBehaviour
         //Add a present to the Weihnachtsmann-illustration
     }
 
-    private void FallOver()
+    private IEnumerator Paralyze()
     {
-        //Trigger animation and sound
+        YieldInstruction instruction = new WaitForEndOfFrame();
+
+        paralyzed = true;
         numPresents = 0;
         float time = 0;
 
@@ -64,10 +71,12 @@ public class WeihnachtsmannController : MonoBehaviour
         {
             time += Time.deltaTime;
 
-            if (time >= fallDelay)
+            if (time >= paralyzeDelay)
             {
+                paralyzed = false;
                 break;
             }
-        }        
+            yield return instruction;
+        }
     }
 }
