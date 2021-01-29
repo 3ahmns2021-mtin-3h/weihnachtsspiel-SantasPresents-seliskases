@@ -140,3 +140,5 @@ MonoBehaviour:
   maxSpeed: 200
   detectionRadius: 300
   maxDistance: 600
+  scareBirdDistance: 200
+  scareBirdKey: 32

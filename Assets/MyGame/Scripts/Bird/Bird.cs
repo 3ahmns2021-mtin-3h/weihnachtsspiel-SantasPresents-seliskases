@@ -10,16 +10,19 @@ public class Bird : MonoBehaviour
     public float maxSpeed;
     public float detectionRadius;
     public float maxDistance;
+    public float scareBirdDistance;
+    public KeyCode scareBirdKey;
 
     private bool currentlyTargeting = false;
     private bool currentlySearching = false;
+    private bool currentlyScared = false;
 
     private void Update()
     {
         float distance = Distance(transform.position, GameManager.sack.transform.position);
 
         //Targeting
-        if (distance <= detectionRadius && currentlyTargeting == false)
+        if (distance <= detectionRadius && currentlyTargeting == false && currentlyScared == false)
         {
             StopAllCoroutines();
 
@@ -27,10 +30,11 @@ public class Bird : MonoBehaviour
 
             currentlyTargeting = true;
             StartCoroutine(MoveTowards(GameManager.sack.transform.position, targetCurve, duration));
+            Destroy(gameObject, duration);
         }
 
         // Searching
-        else if(currentlySearching == false && currentlyTargeting == false && distance < maxDistance)
+        else if(currentlySearching == false && currentlyTargeting == false && distance < maxDistance && currentlyScared == false)
         {
             StopAllCoroutines();
 
@@ -52,8 +56,8 @@ public class Bird : MonoBehaviour
             StartCoroutine(MoveTowards(destination, standardCurve, duration));
         }
         
-        // Back to center
-        else if(currentlySearching == false && currentlyTargeting == false && distance >= maxDistance)
+        // Back to center, triggered at spawn of bird
+        else if(currentlySearching == false && currentlyTargeting == false && distance >= maxDistance && currentlyScared == false)
         {
             StopAllCoroutines();
 
@@ -67,15 +71,15 @@ public class Bird : MonoBehaviour
             StartCoroutine(MoveTowards(destination, standardCurve, duration));
         }
 
-        if (Input.GetKeyDown(GameManager.birdKey))
+        //Scare off
+        if (Input.GetKeyDown(scareBirdKey) && Distance(transform.position, GameManager.weihnachtsmann.transform.position) < scareBirdDistance)
         {
+            StopAllCoroutines();
+            currentlyScared = true;
 
+            StartCoroutine(MoveTowards(new Vector3(transform.position.x - 1000, transform.position.y, transform.position.z), targetCurve, 2));
+            Destroy(gameObject, 3f);
         }
-    }
-
-    private void ScareOff()
-    {
-
     }
 
     private float Distance(Vector3 startPoint, Vector3 endPoint)
