@@ -74,11 +74,14 @@ public class Bird : MonoBehaviour
         //Scare off
         if (Input.GetKeyDown(scareBirdKey) && Distance(transform.position, GameManager.weihnachtsmann.transform.position) < scareBirdDistance)
         {
-            StopAllCoroutines();
-            currentlyScared = true;
+            if (!GameManager.weihnachtsmann.GetComponent<WeihnachtsmannController>().paralyzed)
+            {
+                StopAllCoroutines();
+                currentlyScared = true;
 
-            StartCoroutine(MoveTowards(new Vector3(transform.position.x - 1000, transform.position.y, transform.position.z), targetCurve, 2, false));
-            Destroy(gameObject, 3f);
+                StartCoroutine(MoveTowards(new Vector3(transform.position.x - 1000, transform.position.y, transform.position.z), targetCurve, 2, false));
+                Destroy(gameObject, 3f);
+            }
         }
     }
 

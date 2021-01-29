@@ -50,7 +50,7 @@ public class SpawnSystem : MonoBehaviour
             SetSpawnTime();
         }
 
-        if(time >= birdSpawnTime && !birdSpawned)
+        if(time >= birdSpawnTime && !birdSpawned &&GameManager.sack.presents != 0)
         {
             birdSpawned = true;
             SpawnBird();

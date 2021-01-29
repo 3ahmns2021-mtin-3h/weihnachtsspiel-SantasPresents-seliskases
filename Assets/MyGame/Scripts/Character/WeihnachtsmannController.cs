@@ -10,9 +10,9 @@ public class WeihnachtsmannController : MonoBehaviour
     public int maxPresents = 3;
     [HideInInspector]
     public int numPresents;
+    [HideInInspector]
+    public bool paralyzed = false;
     public static WeihnachtsmannController instance;
-
-    private bool paralyzed = false;
 
     private void Awake()
     {
@@ -31,8 +31,6 @@ public class WeihnachtsmannController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        print("Collision");
-
         switch (collision.gameObject.tag)
         {
             case "Present":
