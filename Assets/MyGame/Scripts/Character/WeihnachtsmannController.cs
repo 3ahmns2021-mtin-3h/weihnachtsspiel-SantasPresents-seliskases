@@ -18,10 +18,15 @@ public class WeihnachtsmannController : MonoBehaviour
     }
 
     private void Update()
-    {
+    {       
         float moveHorizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
         transform.position += new Vector3(moveHorizontal, 0, 0);
-        //Trigger movement animation and sound
+        //Trigger movement animation and sound       
+
+        if (Input.GetKeyDown(scareBirdKey))
+        {
+
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

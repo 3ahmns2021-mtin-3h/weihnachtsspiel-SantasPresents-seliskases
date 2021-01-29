@@ -73,10 +73,12 @@ public class SpawnSystem : MonoBehaviour
             case 1:
                 GameObject spawnedPresent = Instantiate(present, spawnPoint, Quaternion.identity);
                 spawnedPresent.transform.SetParent(empty.transform, false);
+                spawnedPresent.transform.position = spawnPoint;
                 break;
             case 2:
                 GameObject spawnedRock = Instantiate(rock, spawnPoint, Quaternion.identity);
                 spawnedRock.transform.SetParent(empty.transform, false);
+                spawnedRock.transform.position = spawnPoint;
                 break;
         }
     }

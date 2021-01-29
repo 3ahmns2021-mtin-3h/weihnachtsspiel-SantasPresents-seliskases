@@ -28,13 +28,20 @@ public class Bird : MonoBehaviour
             currentlyTargeting = true;
             StartCoroutine(MoveTowards(GameManager.sack.transform.position, targetCurve, duration));
         }
+
         // Searching
         else if(currentlySearching == false && currentlyTargeting == false && distance < maxDistance)
         {
             StopAllCoroutines();
 
-            float x = Random.Range(transform.position.x - 200, transform.position.x + 200);
-            float y = Random.Range(transform.position.y - 200, transform.position.y + 200);
+            float left = GameManager.canvas.pixelRect.width / -2;
+            float right = GameManager.canvas.pixelRect.width / 2;
+            float top = GameManager.canvas.pixelRect.height / 2;
+            float bottom = GameManager.canvas.pixelRect.height / -2;            
+
+            float x = Random.Range(left, right);
+            float y = Random.Range(bottom, top);
+            
             Vector3 destination = new Vector3(x, y, 0);
 
             float destinationDistance = Distance(transform.position, destination);
@@ -44,6 +51,7 @@ public class Bird : MonoBehaviour
             currentlySearching = true;
             StartCoroutine(MoveTowards(destination, standardCurve, duration));
         }
+        
         // Back to center
         else if(currentlySearching == false && currentlyTargeting == false && distance >= maxDistance)
         {
@@ -58,12 +66,22 @@ public class Bird : MonoBehaviour
             currentlySearching = true;
             StartCoroutine(MoveTowards(destination, standardCurve, duration));
         }
+
+        if (Input.GetKeyDown(GameManager.birdKey))
+        {
+
+        }
+    }
+
+    private void ScareOff()
+    {
+
     }
 
     private float Distance(Vector3 startPoint, Vector3 endPoint)
     {
         float xDistance = endPoint.x - startPoint.x;
-        float zDistance = endPoint.z - startPoint.z;
+        float zDistance = endPoint.y - startPoint.y;
 
         return Mathf.Sqrt(Mathf.Pow(xDistance, 2) + Mathf.Pow(zDistance, 2));
     }

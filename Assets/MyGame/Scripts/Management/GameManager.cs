@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [Space]
     public Transform spawnPosition;
     public Sack sackScript;
+    public KeyCode scareBirdKey;
 
     private void Awake()
     {
@@ -57,9 +58,9 @@ public class GameManager : MonoBehaviour
     }
 
     #region Weihnachtsmann
-    private void SetWeihnachtsmann(GameObject instaniatedObject)
+    private void SetWeihnachtsmann(GameObject instantiatedObject)
     {
-        weihnachtsmann = instaniatedObject;
+        weihnachtsmann = instantiatedObject;
     }
     public static GameObject weihnachtsmann;
     #endregion
@@ -78,5 +79,13 @@ public class GameManager : MonoBehaviour
         sack = sackScript;
     }
     public static Sack sack;
+    #endregion
+
+    #region BirdKey
+    private void SetBirdKey()
+    {
+       birdKey = scareBirdKey;
+    }
+    public static KeyCode birdKey;
     #endregion
 }
