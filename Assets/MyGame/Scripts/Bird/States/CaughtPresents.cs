@@ -33,7 +33,7 @@ public class CaughtPresents : State
             currentLerpTime += Time.deltaTime;
             if (currentLerpTime >= duration)
             {
-                Bird.Destroy(Bird.gameObject);
+                Object.Destroy(Bird.gameObject);
                 break;
             }
 

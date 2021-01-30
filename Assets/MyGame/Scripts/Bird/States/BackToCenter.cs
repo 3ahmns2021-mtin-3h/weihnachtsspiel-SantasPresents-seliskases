@@ -33,7 +33,6 @@ public class BackToCenter : State
             currentLerpTime += Time.deltaTime;
             if (currentLerpTime >= duration)
             {
-                Bird.currentState = "Searching";
                 Bird.SetState(new Searching(Bird));
                 break;
             }

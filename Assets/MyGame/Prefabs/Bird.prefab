@@ -142,4 +142,4 @@ MonoBehaviour:
   maxDistance: 600
   scareBirdRadius: 200
   scareBirdKey: 32
-  currentState: 
+  debugState: 1

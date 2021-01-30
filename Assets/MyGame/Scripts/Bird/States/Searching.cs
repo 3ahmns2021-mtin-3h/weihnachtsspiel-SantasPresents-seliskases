@@ -36,7 +36,6 @@ public class Searching : State
             {
                 if(Distance(Bird.transform.position, GameManager.sack.transform.position) < Bird.detectionRadius)
                 {
-                    Bird.currentState = "Targeting";
                     Bird.SetState(new Targeting(Bird));
                     break;
                 }

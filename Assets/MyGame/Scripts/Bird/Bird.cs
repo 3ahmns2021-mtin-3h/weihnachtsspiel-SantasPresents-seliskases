@@ -12,25 +12,24 @@ public class Bird : StateMachine
     public float maxDistance;
     public float scareBirdRadius;
     public KeyCode scareBirdKey;
-
-    [HideInInspector]
-    public string currentState;
+    public bool debugStates = false;
 
     private void Start()
     {
-        currentState = "Back To Center";
-        SetState(new BackToCenter(this));
+        SetState(new BackToCenter(this));   
     }
 
     private void Update()
     {
-        Debug.Log(currentState);
+        if (debugStates)
+        {
+            Debug.Log(State);
+        }        
 
         if (Input.GetKeyDown(scareBirdKey) && Distance(transform.position, GameManager.weihnachtsmann.transform.position) < scareBirdRadius)
         {
-            if (!GameManager.weihnachtsmann.gameObject.GetComponent<WeihnachtsmannController>().paralyzed)
+            if (!GameManager.weihnachtsmann.gameObject.GetComponent<WeihnachtsmannController>().paralyzed && State.ToString() != "Targeting")
             {
-                currentState = "Scared";
                 SetState(new Scared(this));
             }            
         }
