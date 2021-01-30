@@ -22,7 +22,7 @@ public class Scared : State
         Vector3 destination = new Vector3(Bird.transform.position.x -1000, Bird.transform.position.y, Bird.transform.position.z);
 
         float currentSpeed = Random.Range(Bird.minSpeed, Bird.maxSpeed);
-        float duration = Distance(origin, destination) / currentSpeed;
+        float duration = 2;
 
         Vector3 currentPos;
         float currentLerpTime = 0;
