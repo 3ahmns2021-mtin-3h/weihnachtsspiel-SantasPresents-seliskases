@@ -11,7 +11,7 @@ public class Leaderboard : MonoBehaviour
     {
         TextMeshProUGUI[] textFields = {firstPlace, secondPlace, thirdPlace};
 
-        for(int i = 1; i <= 3; i++)
+        for (int i = 1; i <= 3; i++)
         {
             string playerName = PlayerPrefs.GetString("highScoreName" + i);
             int score = PlayerPrefs.GetInt("highScore" + i);

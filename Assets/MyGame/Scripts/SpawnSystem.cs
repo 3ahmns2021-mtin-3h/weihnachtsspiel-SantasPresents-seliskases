@@ -44,13 +44,13 @@ public class SpawnSystem : MonoBehaviour
         time += Time.deltaTime;
         nextSpawnTime -= Time.deltaTime;
 
-        if(nextSpawnTime <= 0)
+        if (nextSpawnTime <= 0)
         {
             SpawnPresent();
             SetSpawnTime();
         }
 
-        if(time >= birdSpawnTime && !birdSpawned &&GameManager.sack.presents != 0)
+        if (time >= birdSpawnTime && !birdSpawned &&GameManager.sack.presents != 0)
         {
             birdSpawned = true;
             SpawnBird();
