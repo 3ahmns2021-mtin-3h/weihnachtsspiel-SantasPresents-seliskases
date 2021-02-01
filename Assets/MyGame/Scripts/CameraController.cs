@@ -17,6 +17,7 @@ public class CameraController : MonoBehaviour
         camera = Camera.main;
         target = GameManager.weihnachtsmann.transform;
     }
+
     private void FixedUpdate()
     {
         Vector3 targetPos = target.position + cameraOffset;
