@@ -20,7 +20,7 @@ State Pattern
 
 ### Visuals
 <div>
-<img src="./Screenshots/Screenshot_01.jpg" width="250">
+<img src="./Screenshots/Screenshot_01.PNG" width="250">
 </div>
 
 Copyright by seliskases
