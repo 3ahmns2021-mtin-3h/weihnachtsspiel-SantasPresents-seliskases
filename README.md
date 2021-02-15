@@ -15,4 +15,12 @@ Winter Wondeland Asset
 ### Project state: 
 Progress: MVP done
 
+### Lessons learned:
+State Pattern
+
+### Visuals
+<div>
+<img src="./Screenshots/Screenshot_01.jpg" width="250">
+</div>
+
 Copyright by seliskases
