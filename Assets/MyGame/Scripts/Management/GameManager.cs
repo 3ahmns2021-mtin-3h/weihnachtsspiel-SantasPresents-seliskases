@@ -12,11 +12,16 @@ public class GameManager : MonoBehaviour
     public Transform spawnPosition;
     public Sack sackScript;
 
+    public static InvokeMenu playedLevel;
+
     private void Awake()
     {
         SetWeihnachtsmann(Instantiate(weihnachtsmannPrefab, spawnPosition.position, Quaternion.identity));
         SetCanvas();
         SetSack();
+
+        SpawnSystem.useBird = playedLevel.level.bird;
+        LevelGenerator.GenerateLevel(playedLevel.level);
 
         weihnachtsmann.transform.SetParent(canvas.transform);
     }

@@ -31,8 +31,8 @@ public class InvokeMenu : MonoBehaviour
                 ChangeLayer(BaseSceneManager.instance.levelSelection);
                 break;
             case CurrentLayer.LoadingScreen:
+                StartCoroutine(LoadAsynchronously(currLayer, 1));
                 ChangeLayer(BaseSceneManager.instance.loadingScreen);
-                LoadLevel(currLayer);
                 break;
         }
     }
@@ -48,11 +48,19 @@ public class InvokeMenu : MonoBehaviour
         BaseSceneManager.instance.tempLayer = layer;
     }
 
-    private void LoadLevel(InvokeMenu currLevel)
-    {
-        SpawnSystem.useBird = currLevel.level.bird;
-        //LevelGenerator.GenerateLevel(currLevel.level);
 
-        SceneManager.LoadScene(1 + SceneManager.GetActiveScene().buildIndex);
+    private IEnumerator LoadAsynchronously(InvokeMenu currLevel, int sceneIndex)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+        GameManager.playedLevel = currLevel;
+
+        while (!operation.isDone)
+        {
+            float _progress = Mathf.Clamp01(operation.progress / 0.9f);
+            BaseSceneManager.instance.loadingSlider.value = _progress;
+
+            yield return null;
+        }
     }
 }
+
