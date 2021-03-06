@@ -64,27 +64,21 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("MainScene");
     }
 
-    #region Weihnachtsmann
     private void SetWeihnachtsmann(GameObject instantiatedObject)
     {
         weihnachtsmann = instantiatedObject;
     }
     public static GameObject weihnachtsmann;
-    #endregion
 
-    #region Canvas
     private void SetCanvas()
     {
         canvas = canvasObject;
     }
     public static Canvas canvas;
-    #endregion
 
-    #region Sack
     private void SetSack()
     {
         sack = sackScript;
     }
     public static Sack sack;
-    #endregion
 }
