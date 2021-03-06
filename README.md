@@ -10,7 +10,7 @@ Windows 10, Unity 2020.1.5.1f, Visual Studio 2019
 WebGL (Ref Res 960x600)
 
 ### Third party material: 
-Winter Wondeland Asset
+Winter Wondeland Asset, Audio Management: https://www.youtube.com/watch?v=6OT43pvUyfY
 
 ### Project state: 
 Progress: MVP done
