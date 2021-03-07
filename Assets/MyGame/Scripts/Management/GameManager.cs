@@ -5,20 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("Singletons")]
-    public GameObject weihnachtsmannPrefab;
     public Canvas canvasObject;
-    [Space]
-    public Transform spawnPosition;
-    public Sack sackScript;
 
     public static InvokeMenu playedLevel;
 
     private void Awake()
     {
-        SetWeihnachtsmann(Instantiate(weihnachtsmannPrefab, spawnPosition.position, Quaternion.identity));
         SetCanvas();
-        SetSack();
 
         SpawnSystem.useBird = playedLevel.level.bird;
         LevelGenerator.GenerateLevel(playedLevel.level);
@@ -28,40 +21,12 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
-        int playerScore = sack.presents;
-        int tempScore;
-
-        string playerName = PlayerPrefs.GetString("playerName");
-        string tempName;
-
-        string highScore = "highScore";
-        string highScoreName = "highScoreName";
-        
-
-        for (int i = 1; i <= 3; i++)
+        if(sack.presents > playedLevel.level.highScore)
         {
-            if (PlayerPrefs.GetInt(highScore + i) < playerScore)
-            {
-                tempScore = PlayerPrefs.GetInt(highScore + i);
-                PlayerPrefs.SetInt(highScore + i, playerScore);
-
-                tempName = PlayerPrefs.GetString(highScoreName + i);
-                PlayerPrefs.SetString(highScoreName + i, playerName);
-
-                if (i < 3)
-                {
-                    int j = i + 1;
-
-                    playerScore = PlayerPrefs.GetInt(highScore + j);
-                    PlayerPrefs.SetInt(highScore + j, tempScore);
-
-                    playerName = PlayerPrefs.GetString(highScoreName + j);
-                    PlayerPrefs.SetString(highScoreName + j, tempName);
-                }
-            }
+            playedLevel.level.highScore = sack.presents;
         }
 
-        RestartGame();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
     public void RestartGame()
@@ -69,9 +34,15 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("MainScene");
     }
 
-    private void SetWeihnachtsmann(GameObject instantiatedObject)
+    public static void SetSack(Sack currentSack)
     {
-        weihnachtsmann = instantiatedObject;
+        sack = currentSack;
+    }
+    public static Sack sack;
+
+    public static void SetWeihnachtsmann(GameObject currrentWeihnachtsmann)
+    {
+        weihnachtsmann = currrentWeihnachtsmann;
     }
     public static GameObject weihnachtsmann;
 
@@ -80,10 +51,4 @@ public class GameManager : MonoBehaviour
         canvas = canvasObject;
     }
     public static Canvas canvas;
-
-    private void SetSack()
-    {
-        sack = sackScript;
-    }
-    public static Sack sack;
 }

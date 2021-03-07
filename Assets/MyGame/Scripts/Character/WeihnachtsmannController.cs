@@ -4,28 +4,59 @@ using UnityEngine;
 
 public class WeihnachtsmannController : MonoBehaviour
 {
-    [Range(50, 150)]
-    public float speed = 100f;
+    [Range(1, 10)]
+    public float maxSpeed;
+    [Range(1, 10)]
+    public float movementScalar;
+    [Range(1, 100)]
+    public float jumpScalar;
+    public float jumpCooldown;
     public float paralyzeDelay;
     public int maxPresents = 3;
+    public Rigidbody2D rb;
     [HideInInspector]
     public int numPresents;
     [HideInInspector]
     public bool paralyzed = false;
     public static WeihnachtsmannController instance;
 
+    //Value between 0 and 1, corresponding to the angle of collision
+    public float directionMultiplier;
+
+    private bool canJump = true;
+
     private void Awake()
     {
         instance = this;
     }
 
-    private void Update()
+    private void Start()
     {
-        if (!paralyzed)
+        jumpScalar *= 100;
+        maxSpeed *= 100;
+        movementScalar *= 100;
+    }
+
+    private void FixedUpdate()
+    {
+        if (paralyzed)
         {
-            float moveHorizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-            transform.position += new Vector3(moveHorizontal, 0, 0);
-            //Trigger movement animation and sound
+            return;
+        }
+
+        float xMovement = Input.GetAxis("Horizontal");
+
+        if(rb.velocity.magnitude < maxSpeed)
+        {
+            Vector2 movement = new Vector2(xMovement, 0);
+            rb.AddForce(movementScalar * movement);
+        }
+
+        if (Input.GetKey(KeyCode.UpArrow) && directionMultiplier != 0 && canJump)
+        {
+            Vector2 jumpForce = new Vector2(0, jumpScalar * directionMultiplier);
+            rb.AddForce(jumpForce);
+            StartCoroutine(JumpCooldown());
         }
     }
 
@@ -42,6 +73,29 @@ public class WeihnachtsmannController : MonoBehaviour
                 Destroy(collision.gameObject);
                 break;
         }
+
+        directionMultiplier = Mathf.Sin(CollisionRadiant(collision));
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        directionMultiplier = Mathf.Sin(CollisionRadiant(collision));
+    }
+
+    private float CollisionRadiant(Collision2D collision)
+    {
+        foreach(ContactPoint2D contactPoint in collision.contacts)
+        {
+            Vector2 collisionDirection = contactPoint.point - rb.position;
+            if(collisionDirection.y < 0)
+            {
+                Vector2 normal = contactPoint.normal;
+                Vector2 velocity = rb.velocity;
+
+                return Mathf.Clamp(Vector2.Angle(velocity, normal) * Mathf.PI / 180, 0, Mathf.PI);
+            }
+        }
+        return 0;
     }
 
     private void CarryPresent(GameObject present)
@@ -72,6 +126,24 @@ public class WeihnachtsmannController : MonoBehaviour
             if (time >= paralyzeDelay)
             {
                 paralyzed = false;
+                break;
+            }
+            yield return instruction;
+        }
+    }
+
+    private IEnumerator JumpCooldown()
+    {
+        YieldInstruction instruction = new WaitForEndOfFrame();
+        float time = jumpCooldown;
+        canJump = false;
+
+        while (true)
+        {
+            time -= Time.deltaTime;
+            if(time < 0)
+            {
+                canJump = true;
                 break;
             }
             yield return instruction;
