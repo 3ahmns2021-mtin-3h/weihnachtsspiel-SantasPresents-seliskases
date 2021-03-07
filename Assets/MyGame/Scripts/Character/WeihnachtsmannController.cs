@@ -10,7 +10,6 @@ public class WeihnachtsmannController : MonoBehaviour
     public float movementScalar;
     [Range(1, 100)]
     public float jumpScalar;
-    public float jumpCooldown;
     public float paralyzeDelay;
     public int maxPresents = 3;
     public Rigidbody2D rb;
@@ -23,8 +22,6 @@ public class WeihnachtsmannController : MonoBehaviour
     //Value between 0 and 1, corresponding to the angle of collision
     public float directionMultiplier;
 
-    private bool canJump = true;
-
     private void Awake()
     {
         instance = this;
@@ -35,6 +32,8 @@ public class WeihnachtsmannController : MonoBehaviour
         jumpScalar *= 100;
         maxSpeed *= 100;
         movementScalar *= 100;
+
+        //rb.AddForce(startForce);
     }
 
     private void FixedUpdate()
@@ -42,7 +41,7 @@ public class WeihnachtsmannController : MonoBehaviour
         if (paralyzed)
         {
             return;
-        }
+        }   
 
         float xMovement = Input.GetAxis("Horizontal");
 
@@ -52,11 +51,10 @@ public class WeihnachtsmannController : MonoBehaviour
             rb.AddForce(movementScalar * movement);
         }
 
-        if (Input.GetKey(KeyCode.UpArrow) && directionMultiplier != 0 && canJump)
+        if (Input.GetKey(KeyCode.UpArrow) && directionMultiplier != 0)
         {
             Vector2 jumpForce = new Vector2(0, jumpScalar * directionMultiplier);
             rb.AddForce(jumpForce);
-            StartCoroutine(JumpCooldown());
         }
     }
 
@@ -74,6 +72,8 @@ public class WeihnachtsmannController : MonoBehaviour
                 break;
         }
 
+        print(CollisionRadiant(collision) * 180 / Mathf.PI);
+
         directionMultiplier = Mathf.Sin(CollisionRadiant(collision));
     }
 
@@ -87,12 +87,16 @@ public class WeihnachtsmannController : MonoBehaviour
         foreach(ContactPoint2D contactPoint in collision.contacts)
         {
             Vector2 collisionDirection = contactPoint.point - rb.position;
-            if(collisionDirection.y < 0)
+            if(collisionDirection.y <= 0)
             {
                 Vector2 normal = contactPoint.normal;
-                Vector2 velocity = rb.velocity;
+                Vector2 velocity = Vector2.right;
 
-                return Mathf.Clamp(Vector2.Angle(velocity, normal) * Mathf.PI / 180, 0, Mathf.PI);
+                float radiant = Vector2.Angle(velocity, normal) * Mathf.PI / 180;
+                if(Mathf.Sin(radiant) > 0)
+                {
+                    return radiant;
+                }
             }
         }
         return 0;
@@ -126,24 +130,6 @@ public class WeihnachtsmannController : MonoBehaviour
             if (time >= paralyzeDelay)
             {
                 paralyzed = false;
-                break;
-            }
-            yield return instruction;
-        }
-    }
-
-    private IEnumerator JumpCooldown()
-    {
-        YieldInstruction instruction = new WaitForEndOfFrame();
-        float time = jumpCooldown;
-        canJump = false;
-
-        while (true)
-        {
-            time -= Time.deltaTime;
-            if(time < 0)
-            {
-                canJump = true;
                 break;
             }
             yield return instruction;

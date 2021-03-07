@@ -92,13 +92,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 2
   movementScalar: 3
-  jumpScalar: 70
-  jumpCooldown: 0.4
+  jumpScalar: 35
   paralyzeDelay: 2
   maxPresents: 3
   rb: {fileID: 4562669291108546290}
   numPresents: 0
   paralyzed: 0
+  directionMultiplier: 0
 --- !u!50 &4562669291108546290
 Rigidbody2D:
   serializedVersion: 4

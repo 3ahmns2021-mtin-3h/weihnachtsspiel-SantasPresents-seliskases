@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Color: {r: 0.084905684, g: 0.07809721, b: 0.07809721, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -142,4 +142,4 @@ MonoBehaviour:
   maxDistance: 600
   scareBirdRadius: 200
   scareBirdKey: 32
-  debugState: 1
+  debugStates: 0
