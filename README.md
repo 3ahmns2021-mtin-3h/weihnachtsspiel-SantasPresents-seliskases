@@ -23,4 +23,14 @@ State Pattern
 <img src="./Screenshots/Screenshot_01.PNG" width="250">
 </div>
 
+### MVP
+ - Nachdem ein Rentierschlitten umgekippt ist(wird nicht gezeigt), muss der Weihnachtsmann nun all seine Geschenke wieder einsammeln.
+ - Die Geschenke fallen vom Himmel. Wenn der Weihnachtsmann ein Geschenk berührt, bevor es den Boden berührt, sammelt er es einund hält es in der Hand.
+ - Der Weihnachtsmann kann maximal dreiGeschenke gleichzeitig tragen, bevor er sie in seinem Sack deponieren muss.Dabei fallen auch gelegentlich Steine vom Himmel. Wird der        Weihnachtsmann von einem Stein getroffen, fällt er auf den Boden.Dabei verliert er alle Geschenke, die er gerade in der Hand trägt. (Die „Hinfallanimation“ist optional)
+ - Am Ende zählt, wie viele Pakete im Sack des Weihnachtsmanns sind.
+ - Optional: Hin und wieder können auch Vögelvom rechten Bildrandzum Sack des Weihnachtsmanns fliegen. Befindet sich der Weihnachtsmann nicht in einer gewissen Distanz zu seinem    Sack, stielt der Vogel ein Pakete, das im Sack ist.
+ - Optional: High-Score System
+ - Optional: Perspektivischer Parallaxeneffekt
+ - Optional: SoundDesign
+
 Copyright by seliskases
