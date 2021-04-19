@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622c7f30ffed2884e85d0a752b422f1c, type: 3}
   m_Name: 3_Level
   m_EditorClassIdentifier: 
-  bird: 0
+  bird: 1
   prefabScale: {x: 50, y: 50}
   icePrefab: {fileID: 4926085798686417572, guid: e59487ab218990949b2f3e4f8a1a2ca1, type: 3}
   weihnachtsmannPrefab: {fileID: 672947598403491469, guid: f2814e741bcaf714fbc3a9b012ae95ae, type: 3}

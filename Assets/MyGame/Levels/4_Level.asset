@@ -12,16 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622c7f30ffed2884e85d0a752b422f1c, type: 3}
   m_Name: 4_Level
   m_EditorClassIdentifier: 
-  sackPrefab: {fileID: 4109689021425120227, guid: d7b82f5f8d5f6b147888c6633aadf17f, type: 3}
-  weihnachtsmannPrefab: {fileID: 672947598403491469, guid: f2814e741bcaf714fbc3a9b012ae95ae, type: 3}
-  icePrefab: {fileID: 4926085798686417572, guid: e59487ab218990949b2f3e4f8a1a2ca1, type: 3}
   bird: 1
-  prefabScale: {x: 100, y: 100}
-  map: {fileID: 0}
+  prefabScale: {x: 50, y: 50}
+  icePrefab: {fileID: 4926085798686417572, guid: e59487ab218990949b2f3e4f8a1a2ca1, type: 3}
+  weihnachtsmannPrefab: {fileID: 672947598403491469, guid: f2814e741bcaf714fbc3a9b012ae95ae, type: 3}
+  sackPrefab: {fileID: 4109689021425120227, guid: d7b82f5f8d5f6b147888c6633aadf17f, type: 3}
+  map: {fileID: 2800000, guid: 3cd6e0770308509439e8682b1abeea4e, type: 3}
   colorMappings:
   - color: {r: 0, g: 0, b: 0, a: 1}
     prefab: {fileID: 4926085798686417572, guid: e59487ab218990949b2f3e4f8a1a2ca1, type: 3}
+    type: 0
   - color: {r: 1, g: 0, b: 0, a: 1}
     prefab: {fileID: 4109689021425120227, guid: d7b82f5f8d5f6b147888c6633aadf17f, type: 3}
+    type: 2
   - color: {r: 1, g: 1, b: 0, a: 1}
     prefab: {fileID: 672947598403491469, guid: f2814e741bcaf714fbc3a9b012ae95ae, type: 3}
+    type: 1
+  highScore: 0

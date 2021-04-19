@@ -8,7 +8,7 @@ public class WeihnachtsmannController : MonoBehaviour
     public float maxSpeed;
     [Range(1, 10)]
     public float movementScalar;
-    [Range(1, 100)]
+    [Range(0, 100)]
     public float jumpScalar;
     public float paralyzeDelay;
     public int maxPresents = 3;
@@ -20,7 +20,7 @@ public class WeihnachtsmannController : MonoBehaviour
     public static WeihnachtsmannController instance;
 
     //Value between 0 and 1, corresponding to the angle of collision
-    public float directionMultiplier;
+    private float directionMultiplier;
 
     private void Awake()
     {
@@ -32,8 +32,6 @@ public class WeihnachtsmannController : MonoBehaviour
         jumpScalar *= 100;
         maxSpeed *= 100;
         movementScalar *= 100;
-
-        //rb.AddForce(startForce);
     }
 
     private void FixedUpdate()
@@ -71,8 +69,6 @@ public class WeihnachtsmannController : MonoBehaviour
                 Destroy(collision.gameObject);
                 break;
         }
-
-        print(CollisionRadiant(collision) * 180 / Mathf.PI);
 
         directionMultiplier = Mathf.Sin(CollisionRadiant(collision));
     }

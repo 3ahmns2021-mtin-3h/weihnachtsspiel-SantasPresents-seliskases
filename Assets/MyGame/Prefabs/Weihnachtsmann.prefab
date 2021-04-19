@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 672947598403491470}
   - component: {fileID: 672947598403491464}
   - component: {fileID: 672947598403491471}
+  - component: {fileID: 5562177472662916210}
   - component: {fileID: 672947598403491465}
   - component: {fileID: 4562669291108546290}
   - component: {fileID: 6575101298625809333}
@@ -78,7 +79,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &672947598403491465
+--- !u!114 &5562177472662916210
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,18 +88,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 672947598403491469}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b19a54bb92e7134dbd30b6a5c908919, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 100
+  paralyzeDelay: 1
+  maxPresents: 3
+  numPresents: 0
+--- !u!114 &672947598403491465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672947598403491469}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65b34732dd3ed884d808ed2a8d67d120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 2
   movementScalar: 3
-  jumpScalar: 35
+  jumpScalar: 0
   paralyzeDelay: 2
   maxPresents: 3
   rb: {fileID: 4562669291108546290}
   numPresents: 0
   paralyzed: 0
-  directionMultiplier: 0
 --- !u!50 &4562669291108546290
 Rigidbody2D:
   serializedVersion: 4
@@ -119,7 +135,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 6
 --- !u!61 &6575101298625809333
 BoxCollider2D:
   m_ObjectHideFlags: 0

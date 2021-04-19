@@ -244,7 +244,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &436907611
 RectTransform:
   m_ObjectHideFlags: 0
@@ -553,10 +553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c0bc5b91b98d44428e3a1f6e4eca4ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weihnachtsmannPrefab: {fileID: 672947598403491469, guid: f2814e741bcaf714fbc3a9b012ae95ae, type: 3}
   canvasObject: {fileID: 313812011}
-  spawnPosition: {fileID: 1688429000}
-  sackScript: {fileID: 436907614}
 --- !u!114 &1088536737
 MonoBehaviour:
   m_ObjectHideFlags: 0
