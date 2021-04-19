@@ -12,6 +12,9 @@ WebGL (Ref Res 960x600)
 ### Third party material: 
 Winter Wondeland Asset, Audio Management: https://www.youtube.com/watch?v=6OT43pvUyfY
 
+## Necessary execution steps
+Install the Editor Couroutines (Version 1.0.0) Package in Unity
+
 ### Project state: 
 Progress: MVP done
 
