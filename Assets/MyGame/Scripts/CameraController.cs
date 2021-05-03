@@ -15,7 +15,7 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         camera = Camera.main;
-        target = GameManager.weihnachtsmann.transform;
+        target = GameManager.currentWeihnachtsmann.transform;
     }
 
     private void FixedUpdate()

@@ -19,7 +19,7 @@ public class Targeting : State
         YieldInstruction instruction = new WaitForEndOfFrame();
 
         Vector3 origin = Bird.transform.position;
-        Vector3 destination = GameManager.sack.transform.position;
+        Vector3 destination = GameManager.currentSack.transform.position;
         Vector3 currentPos;
 
         float currentSpeed = Random.Range(Bird.minSpeed, Bird.maxSpeed);
@@ -33,7 +33,7 @@ public class Targeting : State
             currentLerpTime += Time.deltaTime;
             if (currentLerpTime >= duration)
             {
-                GameManager.sack.presents = 0;
+                GameManager.currentSack.presents = 0;
 
                 Bird.SetState(new CaughtPresents(Bird));
                 break;

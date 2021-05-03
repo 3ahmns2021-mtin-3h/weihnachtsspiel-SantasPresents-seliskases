@@ -11,7 +11,7 @@ public class Sack : MonoBehaviour
 
     private void Update()
     {
-        Vector3 weihnachtsmannPos = GameManager.weihnachtsmann.transform.position;
+        Vector3 weihnachtsmannPos = GameManager.currentWeihnachtsmann.transform.position;
 
         if (Distance(transform.position, weihnachtsmannPos) <= maxDistance && Input.GetKeyDown(keyCode))
         {

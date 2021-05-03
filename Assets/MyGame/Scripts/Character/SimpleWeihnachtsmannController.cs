@@ -10,7 +10,7 @@ public class SimpleWeihnachtsmannController : MonoBehaviour
     public int maxPresents = 3;
     [HideInInspector]
     public int numPresents;
-    private bool paralyzed;
+    public bool paralyzed;
     public static SimpleWeihnachtsmannController instance;
 
     private void Awake()

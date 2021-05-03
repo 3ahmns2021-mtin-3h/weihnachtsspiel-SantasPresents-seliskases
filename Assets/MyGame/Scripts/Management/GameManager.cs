@@ -6,26 +6,22 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public Canvas canvasObject;
+    public GameObject weihnachtsmann;
+    public Sack sack;
 
     public static InvokeMenu playedLevel;
 
     private void Awake()
     {
         SetCanvas();
+        SetWeihnachtsmann();
+        SetSack();
 
-        SpawnSystem.useBird = playedLevel.level.bird;
-        LevelGenerator.GenerateLevel(playedLevel.level);
-
-        weihnachtsmann.transform.SetParent(canvas.transform);
+        currentWeihnachtsmann.transform.SetParent(canvas.transform);
     }
 
     public void EndGame()
     {
-        if(sack.presents > playedLevel.level.highScore)
-        {
-            playedLevel.level.highScore = sack.presents;
-        }
-
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
@@ -34,17 +30,17 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("MainScene");
     }
 
-    public static void SetSack(Sack currentSack)
+    public void SetSack()
     {
-        sack = currentSack;
+        currentSack = sack;
     }
-    public static Sack sack;
+    public static Sack currentSack;
 
-    public static void SetWeihnachtsmann(GameObject currrentWeihnachtsmann)
+    public void SetWeihnachtsmann()
     {
-        weihnachtsmann = currrentWeihnachtsmann;
+        currentWeihnachtsmann = weihnachtsmann;
     }
-    public static GameObject weihnachtsmann;
+    public static GameObject currentWeihnachtsmann;
 
     private void SetCanvas()
     {

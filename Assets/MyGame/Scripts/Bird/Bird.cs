@@ -26,9 +26,9 @@ public class Bird : StateMachine
             Debug.Log(State);
         }        
 
-        if (Input.GetKeyDown(scareBirdKey) && Distance(transform.position, GameManager.weihnachtsmann.transform.position) < scareBirdRadius)
+        if (Input.GetKeyDown(scareBirdKey) && Distance(transform.position, GameManager.currentWeihnachtsmann.transform.position) < scareBirdRadius)
         {
-            if (!GameManager.weihnachtsmann.gameObject.GetComponent<WeihnachtsmannController>().paralyzed && State.ToString() != "Targeting")
+            if (!GameManager.currentWeihnachtsmann.gameObject.GetComponent<SimpleWeihnachtsmannController>().paralyzed && State.ToString() != "Targeting")
             {
                 SetState(new Scared(this));
             }            

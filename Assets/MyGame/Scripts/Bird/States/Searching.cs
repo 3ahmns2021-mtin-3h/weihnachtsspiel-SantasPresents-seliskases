@@ -34,7 +34,7 @@ public class Searching : State
             currentLerpTime += Time.deltaTime;
             if (currentLerpTime >= duration)
             {
-                if(Distance(Bird.transform.position, GameManager.sack.transform.position) < Bird.detectionRadius)
+                if(Distance(Bird.transform.position, GameManager.currentSack.transform.position) < Bird.detectionRadius)
                 {
                     Bird.SetState(new Targeting(Bird));
                     break;

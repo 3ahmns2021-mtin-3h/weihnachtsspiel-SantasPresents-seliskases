@@ -12,7 +12,7 @@ public class SpawnSystem : MonoBehaviour
     public float spawnMaxTime;
     public float spawnHeight;
     public float birdSpawnTime;
-    public static bool useBird;
+    public bool useBird;
 
     private float nextSpawnTime;
     private float time;
@@ -51,7 +51,7 @@ public class SpawnSystem : MonoBehaviour
             SetSpawnTime();
         }
 
-        if (useBird && time >= birdSpawnTime && !birdSpawned && GameManager.sack.presents != 0)
+        if (useBird && time >= birdSpawnTime && !birdSpawned && GameManager.currentSack.presents != 0)
         {
             birdSpawned = true;
             SpawnBird();

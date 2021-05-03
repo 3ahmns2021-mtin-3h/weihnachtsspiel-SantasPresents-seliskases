@@ -14,8 +14,6 @@ public class InvokeMenu : MonoBehaviour
     }
     [SerializeReference]
     public CurrentLayer layer;
-    [HideInInspector]
-    public Level level;
 
     public void LayerInput(InvokeMenu currLayer)
     {
@@ -26,9 +24,6 @@ public class InvokeMenu : MonoBehaviour
                 break;
             case CurrentLayer.Settings:
                 ChangeLayer(BaseSceneManager.instance.settings);
-                break;
-            case CurrentLayer.LevelSelection:
-                ChangeLayer(BaseSceneManager.instance.levelSelection);
                 break;
             case CurrentLayer.LoadingScreen:
                 StartCoroutine(LoadAsynchronously(currLayer, 1));
