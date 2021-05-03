@@ -576,8 +576,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasObject: {fileID: 313812011}
-  sack: {fileID: 91713012}
   weihnachtsmann: {fileID: 1964369573}
+  sack: {fileID: 91713012}
 --- !u!114 &1088536737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -598,7 +598,7 @@ MonoBehaviour:
   spawnMaxTime: 2
   spawnHeight: 100
   birdSpawnTime: 5
-  useBird: 0
+  useBird: 1
 --- !u!114 &1088536738
 MonoBehaviour:
   m_ObjectHideFlags: 0

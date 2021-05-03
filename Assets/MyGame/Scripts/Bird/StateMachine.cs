@@ -6,14 +6,43 @@ public abstract class StateMachine : MonoBehaviour
 {
     protected State State;
 
-    public void SetState(State state)
+    public enum States
     {
-        if(State != null)
+        Searching,
+        Targeting,
+        BackToCenter,
+        CaughtPresents,
+        Scared
+    }
+    public States currentState;
+
+    public void SetState(States inputState, Bird bird)
+    {
+        if(State!= null)
         {
             StopCoroutine(State.Fly());
-        }        
+        }
 
-        State = state;
+        switch(inputState)
+        {
+            case States.Searching:
+                State = new Searching(bird);
+                break;
+            case States.Targeting:
+                State = new Targeting(bird);
+                break;
+            case States.BackToCenter:
+                State = new BackToCenter(bird);
+                break;
+            case States.CaughtPresents:
+                State = new CaughtPresents(bird);
+                break;
+            case States.Scared:
+                State = new Scared(bird);
+                break;
+        }
+
+        currentState = inputState;
         StartCoroutine(State.Start());
     }
 }

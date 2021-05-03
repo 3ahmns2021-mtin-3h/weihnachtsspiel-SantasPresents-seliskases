@@ -35,7 +35,7 @@ public class Targeting : State
             {
                 GameManager.currentSack.presents = 0;
 
-                Bird.SetState(new CaughtPresents(Bird));
+                Bird.SetState(StateMachine.States.CaughtPresents, Bird);
                 break;
             }
 
