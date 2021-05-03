@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SimpleWeihnachtsmannController : MonoBehaviour
+public class WeihnachtsmannController : MonoBehaviour
 {
     [Range(50, 150)]
     public float speed = 100f;
@@ -11,7 +11,7 @@ public class SimpleWeihnachtsmannController : MonoBehaviour
     [HideInInspector]
     public int numPresents;
     public bool paralyzed;
-    public static SimpleWeihnachtsmannController instance;
+    public static WeihnachtsmannController instance;
 
     private void Awake()
     {

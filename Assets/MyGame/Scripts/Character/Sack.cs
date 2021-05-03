@@ -15,9 +15,9 @@ public class Sack : MonoBehaviour
 
         if (Distance(transform.position, weihnachtsmannPos) <= maxDistance && Input.GetKeyDown(keyCode))
         {
-            int tempNumPresents = SimpleWeihnachtsmannController.instance.numPresents;
+            int tempNumPresents = WeihnachtsmannController.instance.numPresents;
             presents += tempNumPresents;
-            SimpleWeihnachtsmannController.instance.numPresents -= tempNumPresents;
+            WeihnachtsmannController.instance.numPresents -= tempNumPresents;
         }
     }
 

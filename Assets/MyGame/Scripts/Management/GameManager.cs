@@ -16,8 +16,6 @@ public class GameManager : MonoBehaviour
         SetCanvas();
         SetWeihnachtsmann();
         SetSack();
-
-        currentWeihnachtsmann.transform.SetParent(canvas.transform);
     }
 
     public void EndGame()
