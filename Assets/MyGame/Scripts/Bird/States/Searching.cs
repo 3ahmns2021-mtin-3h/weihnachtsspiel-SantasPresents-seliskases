@@ -24,7 +24,7 @@ public class Searching : State
         Vector3 currentPos;
 
         float currentSpeed = Random.Range(Bird.minSpeed, Bird.maxSpeed);
-        float duration = Distance(origin, destination) / currentSpeed;
+        float duration = Vector3.Distance(origin, destination) / currentSpeed;
 
         float currentLerpTime = 0;
         float clampLerpTime = 0;
@@ -34,14 +34,14 @@ public class Searching : State
             currentLerpTime += Time.deltaTime;
             if (currentLerpTime >= duration)
             {
-                if(Distance(Bird.transform.position, GameManager.currentSack.transform.position) < Bird.detectionRadius)
+                if(Vector3.Distance(Bird.transform.position, GameManager.currentSack.transform.position) < Bird.detectionRadius)
                 {
-                    Bird.SetState(StateMachine.States.Targeting, Bird);
+                    Bird.SetState(StateMachine.BirdState.Targeting, Bird);
                     break;
                 }
                 else
                 {
-                    Bird.SetState(StateMachine.States.Searching, Bird);
+                    Bird.SetState(StateMachine.BirdState.Searching, Bird);
                     break;
                 }                
             }
@@ -65,13 +65,5 @@ public class Searching : State
         float y = Random.Range(bottom, top);
 
         return new Vector3(x, y, 0);
-    }
-
-    private float Distance(Vector3 startPoint, Vector3 endPoint)
-    {
-        float xDistance = endPoint.x - startPoint.x;
-        float yDistance = endPoint.y - startPoint.y;
-
-        return Mathf.Sqrt(Mathf.Pow(xDistance, 2) + Mathf.Pow(yDistance, 2));
     }
 }

@@ -22,7 +22,7 @@ public class CaughtPresents : State
         Vector3 destination = new Vector3(Bird.transform.position.x - 1000, Bird.transform.position.y, Bird.transform.position.z);
 
         float currentSpeed = Random.Range(Bird.minSpeed, Bird.maxSpeed);
-        float duration = Distance(origin, destination) / currentSpeed;
+        float duration = Vector3.Distance(origin, destination) / currentSpeed;
 
         Vector3 currentPos;
         float currentLerpTime = 0;
@@ -43,13 +43,5 @@ public class CaughtPresents : State
             Bird.transform.position = currentPos;
             yield return instruction;
         }
-    }
-
-    private float Distance(Vector3 startPoint, Vector3 endPoint)
-    {
-        float xDistance = endPoint.x - startPoint.x;
-        float yDistance = endPoint.y - startPoint.y;
-
-        return Mathf.Sqrt(Mathf.Pow(xDistance, 2) + Mathf.Pow(yDistance, 2));
     }
 }

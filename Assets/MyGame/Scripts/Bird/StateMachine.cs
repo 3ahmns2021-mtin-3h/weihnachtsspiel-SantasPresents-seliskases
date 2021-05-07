@@ -6,7 +6,7 @@ public abstract class StateMachine : MonoBehaviour
 {
     protected State State;
 
-    public enum States
+    public enum BirdState
     {
         Searching,
         Targeting,
@@ -14,9 +14,9 @@ public abstract class StateMachine : MonoBehaviour
         CaughtPresents,
         Scared
     }
-    public States currentState;
+    public BirdState currentState;
 
-    public void SetState(States inputState, Bird bird)
+    public void SetState(BirdState inputState, Bird bird)
     {
         if(State!= null)
         {
@@ -25,19 +25,19 @@ public abstract class StateMachine : MonoBehaviour
 
         switch(inputState)
         {
-            case States.Searching:
+            case BirdState.Searching:
                 State = new Searching(bird);
                 break;
-            case States.Targeting:
+            case BirdState.Targeting:
                 State = new Targeting(bird);
                 break;
-            case States.BackToCenter:
+            case BirdState.BackToCenter:
                 State = new BackToCenter(bird);
                 break;
-            case States.CaughtPresents:
+            case BirdState.CaughtPresents:
                 State = new CaughtPresents(bird);
                 break;
-            case States.Scared:
+            case BirdState.Scared:
                 State = new Scared(bird);
                 break;
         }

@@ -31,7 +31,7 @@ public class UI : MonoBehaviour
             gameManager.EndGame();
         }       
         
-        presentCounter.text = GameManager.currentSack.presents.ToString();               
+        presentCounter.text = GameManager.numPresentsStored.ToString();               
     }
 
     private void DisplayTime(float _timeToDisplay)

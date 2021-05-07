@@ -15,20 +15,20 @@ public class Bird : StateMachine
 
     private void Start()
     {
-        SetState(States.BackToCenter, this);
+        SetState(BirdState.BackToCenter, this);
     }
 
     private void Update()
     {
         if (IsScared())
         {
-            SetState(States.Scared, this);
+            SetState(BirdState.Scared, this);
         }
     }
 
     private bool IsScared()
     {
-        if(currentState != States.Targeting)
+        if(currentState == BirdState.Targeting)
         {
             return false;
         }
@@ -43,7 +43,7 @@ public class Bird : StateMachine
             return false;
         }
 
-        if (!GameManager.currentWeihnachtsmann.gameObject.GetComponent<WeihnachtsmannController>().paralyzed)
+        if (GameManager.currentWeihnachtsmann.gameObject.GetComponent<WeihnachtsmannController>().paralyzed)
         {
             return false;
         }

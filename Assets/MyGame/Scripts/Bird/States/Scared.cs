@@ -44,12 +44,4 @@ public class Scared : State
             yield return instruction;
         }
     }
-
-    private float Distance(Vector3 startPoint, Vector3 endPoint)
-    {
-        float xDistance = endPoint.x - startPoint.x;
-        float yDistance = endPoint.y - startPoint.y;
-
-        return Mathf.Sqrt(Mathf.Pow(xDistance, 2) + Mathf.Pow(yDistance, 2));
-    }
 }

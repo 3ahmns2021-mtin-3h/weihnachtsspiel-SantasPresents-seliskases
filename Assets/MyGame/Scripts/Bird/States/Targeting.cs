@@ -23,7 +23,7 @@ public class Targeting : State
         Vector3 currentPos;
 
         float currentSpeed = Random.Range(Bird.minSpeed, Bird.maxSpeed);
-        float duration = Distance(origin, destination) / currentSpeed;
+        float duration = Vector3.Distance(origin, destination) / currentSpeed;
 
         float currentLerpTime = 0;
         float clampLerpTime = 0;
@@ -33,9 +33,9 @@ public class Targeting : State
             currentLerpTime += Time.deltaTime;
             if (currentLerpTime >= duration)
             {
-                GameManager.currentSack.presents = 0;
+                GameManager.numPresentsStored = 0;
 
-                Bird.SetState(StateMachine.States.CaughtPresents, Bird);
+                Bird.SetState(StateMachine.BirdState.CaughtPresents, Bird);
                 break;
             }
 
@@ -45,13 +45,5 @@ public class Targeting : State
             Bird.transform.position = currentPos;
             yield return instruction;
         }
-    }
-
-    private float Distance(Vector3 startPoint, Vector3 endPoint)
-    {
-        float xDistance = endPoint.x - startPoint.x;
-        float yDistance = endPoint.y - startPoint.y;
-
-        return Mathf.Sqrt(Mathf.Pow(xDistance, 2) + Mathf.Pow(yDistance, 2));
     }
 }

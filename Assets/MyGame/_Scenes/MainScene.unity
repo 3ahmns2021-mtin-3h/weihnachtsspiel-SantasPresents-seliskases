@@ -218,24 +218,14 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5096874003846896746, guid: d7b82f5f8d5f6b147888c6633aadf17f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d7b82f5f8d5f6b147888c6633aadf17f, type: 3}
 --- !u!224 &91713011 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7467419453108156439, guid: d7b82f5f8d5f6b147888c6633aadf17f, type: 3}
   m_PrefabInstance: {fileID: 91713010}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &91713012 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5096874003846896746, guid: d7b82f5f8d5f6b147888c6633aadf17f, type: 3}
-  m_PrefabInstance: {fileID: 91713010}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e3e232d32bae4b44acd68c67b753ee3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &313812008
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,7 +567,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasObject: {fileID: 313812011}
   weihnachtsmann: {fileID: 1964369573}
-  sack: {fileID: 91713012}
 --- !u!114 &1088536737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -612,6 +601,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds: []
+--- !u!1 &1426600111 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4109689021425120227, guid: d7b82f5f8d5f6b147888c6633aadf17f, type: 3}
+  m_PrefabInstance: {fileID: 91713010}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1779479990
 GameObject:
   m_ObjectHideFlags: 0
@@ -919,7 +913,20 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.4363
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5562177472662916210, guid: f2814e741bcaf714fbc3a9b012ae95ae, type: 3}
+      propertyPath: keyCode
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562177472662916210, guid: f2814e741bcaf714fbc3a9b012ae95ae, type: 3}
+      propertyPath: maxDistance
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562177472662916210, guid: f2814e741bcaf714fbc3a9b012ae95ae, type: 3}
+      propertyPath: sack
+      value: 
+      objectReference: {fileID: 1426600111}
+    m_RemovedComponents:
+    - {fileID: 672947598403491465, guid: f2814e741bcaf714fbc3a9b012ae95ae, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f2814e741bcaf714fbc3a9b012ae95ae, type: 3}
 --- !u!224 &1964369572 stripped
 RectTransform:

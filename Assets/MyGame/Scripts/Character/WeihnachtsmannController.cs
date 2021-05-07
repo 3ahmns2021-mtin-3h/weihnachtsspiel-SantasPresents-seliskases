@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class WeihnachtsmannController : MonoBehaviour
 {
+    public GameObject sack;
     [Range(50, 150)]
     public float speed = 100f;
     public float paralyzeDelay;
     public int maxPresents = 3;
+    public float maxDistance;
+    public KeyCode keyCode;
     [HideInInspector]
-    public int numPresents;
     public bool paralyzed;
-    public static WeihnachtsmannController instance;
 
-    private void Awake()
-    {
-        instance = this;
-    }
+    private int numPresentsCarrying;
 
     private void Update()
     {
@@ -27,13 +25,16 @@ public class WeihnachtsmannController : MonoBehaviour
 
         float moveHorizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
         transform.position += new Vector3(moveHorizontal, 0, 0);
-        //Trigger movement animation and sound
+
+        if (Vector3.Distance(transform.position, sack.transform.position) <= maxDistance && Input.GetKeyDown(keyCode))
+        {
+            GameManager.numPresentsStored += numPresentsCarrying;
+            numPresentsCarrying = 0;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        print("Collision");
-
         switch (collision.gameObject.tag)
         {
             case "Present":
@@ -49,15 +50,13 @@ public class WeihnachtsmannController : MonoBehaviour
 
     private void CarryPresent(GameObject present)
     {
-        if (numPresents >= maxPresents)
+        if (numPresentsCarrying >= maxPresents)
         {
             return;
         }
 
-        numPresents += 1;
+        numPresentsCarrying += 1;
         Destroy(present);
-        //Trigger carry-animation
-        //Add a present to the Weihnachtsmann-illustration
     }
 
     private IEnumerator Paralyze()
@@ -65,7 +64,7 @@ public class WeihnachtsmannController : MonoBehaviour
         YieldInstruction instruction = new WaitForEndOfFrame();
 
         paralyzed = true;
-        numPresents = 0;
+        numPresentsCarrying = 0;
         float time = 0;
 
         while (true)

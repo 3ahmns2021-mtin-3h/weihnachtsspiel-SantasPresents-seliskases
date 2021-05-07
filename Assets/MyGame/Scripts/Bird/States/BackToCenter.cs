@@ -22,7 +22,7 @@ public class BackToCenter : State
         Vector3 destination = new Vector3(0, 0, 0);
 
         float currentSpeed = Random.Range(Bird.minSpeed, Bird.maxSpeed);
-        float duration = Distance(origin, destination) / currentSpeed;
+        float duration = Vector3.Distance(origin, destination) / currentSpeed;
 
         Vector3 currentPos;
         float currentLerpTime = 0;
@@ -33,7 +33,7 @@ public class BackToCenter : State
             currentLerpTime += Time.deltaTime;
             if (currentLerpTime >= duration)
             {
-                Bird.SetState(StateMachine.States.Searching, Bird);
+                Bird.SetState(StateMachine.BirdState.Searching, Bird);
                 break;
             }
 
@@ -43,13 +43,5 @@ public class BackToCenter : State
             Bird.transform.position = currentPos;
             yield return instruction;
         }
-    }
-
-    private float Distance(Vector3 startPoint, Vector3 endPoint)
-    {
-        float xDistance = endPoint.x - startPoint.x;
-        float yDistance = endPoint.y - startPoint.y;
-
-        return Mathf.Sqrt(Mathf.Pow(xDistance, 2) + Mathf.Pow(yDistance, 2));
     }
 }
