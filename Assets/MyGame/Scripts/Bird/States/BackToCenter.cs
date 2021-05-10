@@ -8,40 +8,22 @@ public class BackToCenter : State
     {
     }
 
-    public override IEnumerator Start()
+    public override IEnumerator Enter()
     {
-        Bird.StartCoroutine(Fly());
+        OnFlightFinished += Exit;
+
+        Vector2 origin = Bird.transform.position;
+        Vector2 destination = new Vector2(0, 0);
+        float speed = Random.Range(Bird.minSpeed, Bird.maxSpeed);
+
+        currentFlight = Bird.StartCoroutine(FlightAnimation(origin, destination, speed, Bird.standardCurve));
         yield break;
     }
 
-    public override IEnumerator Fly()
+    public override IEnumerator Exit()
     {
-        YieldInstruction instruction = new WaitForEndOfFrame();
-
-        Vector3 origin = Bird.transform.position;
-        Vector3 destination = new Vector3(0, 0, 0);
-
-        float currentSpeed = Random.Range(Bird.minSpeed, Bird.maxSpeed);
-        float duration = Vector3.Distance(origin, destination) / currentSpeed;
-
-        Vector3 currentPos;
-        float currentLerpTime = 0;
-        float clampLerpTime = 0;
-
-        while (true)
-        {
-            currentLerpTime += Time.deltaTime;
-            if (currentLerpTime >= duration)
-            {
-                Bird.SetState(StateMachine.BirdState.Searching, Bird);
-                break;
-            }
-
-            clampLerpTime = Mathf.Clamp01(currentLerpTime / duration);
-            currentPos = Vector3.Lerp(origin, destination, Bird.standardCurve.Evaluate(clampLerpTime));
-
-            Bird.transform.position = currentPos;
-            yield return instruction;
-        }
+        OnFlightFinished -= Exit;
+        Bird.SetState(StateMachine.BirdState.Searching, Bird);
+        yield return null;
     }
 }

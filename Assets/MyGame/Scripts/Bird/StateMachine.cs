@@ -20,7 +20,7 @@ public abstract class StateMachine : MonoBehaviour
     {
         if(State!= null)
         {
-            StopCoroutine(State.Fly());
+            StopCoroutine(State.currentFlight);
         }
 
         switch(inputState)
@@ -43,6 +43,6 @@ public abstract class StateMachine : MonoBehaviour
         }
 
         currentState = inputState;
-        StartCoroutine(State.Start());
+        StartCoroutine(State.Enter());
     }
 }

@@ -6,22 +6,27 @@ public abstract class State
 {
     protected Bird Bird;
 
+    public delegate IEnumerator FlyAction();
+    public static event FlyAction OnFlightFinished;
+    public static Coroutine currentFlight;
+
+
     public State(Bird bird)
     {
         Bird = bird;
     }
 
-    public virtual IEnumerator Start()
+    public virtual IEnumerator Enter()
     {
         yield break;
     }
 
-    public virtual IEnumerator Fly()
+    public virtual IEnumerator Exit()
     {
         yield break;
     }
 
-    public virtual IEnumerator FlyRefactored(Vector3 origin, Vector3 destination, float speed)
+    public virtual IEnumerator FlightAnimation(Vector3 origin, Vector3 destination, float speed, AnimationCurve curve)
     {
         YieldInstruction instruction = new WaitForEndOfFrame();
         Vector3 currentPos;
@@ -35,11 +40,15 @@ public abstract class State
             currentLerpTime += Time.deltaTime;
             if(currentLerpTime > duration)
             {
-                //Trigger Finished Event
+                if (OnFlightFinished != null)
+                {
+                    Bird.StartCoroutine(OnFlightFinished());
+                    break;
+                }
             }
 
             clampLerpTime = Mathf.Clamp01(currentLerpTime / duration);
-            currentPos = Vector3.Lerp(origin, destination, Bird.standardCurve.Evaluate(clampLerpTime));
+            currentPos = Vector3.Lerp(origin, destination, curve.Evaluate(clampLerpTime));
 
             Bird.transform.position = currentPos;
             yield return instruction;

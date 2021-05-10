@@ -8,50 +8,32 @@ public class Searching : State
     {
     }
 
-
-    public override IEnumerator Start()
+    public override IEnumerator Enter()
     {
-        Bird.StartCoroutine(Fly());
+        OnFlightFinished += Exit;
+
+        Vector2 origin = Bird.transform.position;
+        Vector2 destination = Destination();
+        float speed = Random.Range(Bird.minSpeed, Bird.maxSpeed);
+
+        currentFlight = Bird.StartCoroutine(FlightAnimation(origin, destination, speed, Bird.standardCurve));
         yield break;
     }
 
-    public override IEnumerator Fly()
+    public override IEnumerator Exit()
     {
-        YieldInstruction instruction = new WaitForEndOfFrame();
+        OnFlightFinished -= Exit;
 
-        Vector3 origin = Bird.transform.position;
-        Vector3 destination = Destination();
-        Vector3 currentPos;
-
-        float currentSpeed = Random.Range(Bird.minSpeed, Bird.maxSpeed);
-        float duration = Vector3.Distance(origin, destination) / currentSpeed;
-
-        float currentLerpTime = 0;
-        float clampLerpTime = 0;
-
-        while (true)
+        if (Vector3.Distance(Bird.transform.position, GameManager.currentSack.transform.position) < Bird.detectionRadius)
         {
-            currentLerpTime += Time.deltaTime;
-            if (currentLerpTime >= duration)
-            {
-                if(Vector3.Distance(Bird.transform.position, GameManager.currentSack.transform.position) < Bird.detectionRadius)
-                {
-                    Bird.SetState(StateMachine.BirdState.Targeting, Bird);
-                    break;
-                }
-                else
-                {
-                    Bird.SetState(StateMachine.BirdState.Searching, Bird);
-                    break;
-                }                
-            }
-
-            clampLerpTime = Mathf.Clamp01(currentLerpTime / duration);
-            currentPos = Vector3.Lerp(origin, destination, Bird.standardCurve.Evaluate(clampLerpTime));
-
-            Bird.transform.position = currentPos;
-            yield return instruction;
+            Bird.SetState(StateMachine.BirdState.Targeting, Bird);
         }
+        else
+        {
+            Bird.SetState(StateMachine.BirdState.Searching, Bird);
+        }
+
+        yield return null;
     }
 
     private Vector3 Destination()
