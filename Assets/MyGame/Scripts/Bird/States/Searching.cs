@@ -36,7 +36,7 @@ public class Searching : State
         yield return null;
     }
 
-    private Vector3 Destination()
+    private Vector2 Destination()
     {
         float left = GameManager.canvas.pixelRect.width / -2;
         float right = GameManager.canvas.pixelRect.width / 2;
@@ -46,6 +46,6 @@ public class Searching : State
         float x = Random.Range(left, right);
         float y = Random.Range(bottom, top);
 
-        return new Vector3(x, y, 0);
+        return new Vector2(x, y);
     }
 }

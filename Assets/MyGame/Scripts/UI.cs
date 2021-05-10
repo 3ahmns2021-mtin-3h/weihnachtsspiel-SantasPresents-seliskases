@@ -5,41 +5,21 @@ using TMPro;
 
 public class UI : MonoBehaviour
 {
-    public GameManager gameManager;
     public TextMeshProUGUI timer;
     public TextMeshProUGUI presentCounter;
 
-    public float startTime = 60;
-
-    private float time;
-
-    private void Start()
-    {
-        time = startTime;
-    }
-
     private void Update()
     {
-        time -= Time.deltaTime;
-
-        if(time > 0)
-        {
-            DisplayTime(time);
-        }
-        else
-        {
-            gameManager.EndGame();
-        }       
-        
-        presentCounter.text = GameManager.numPresentsStored.ToString();               
+        DisplayTime(GameManager.timeRemaining);
+        presentCounter.text = GameManager.numPresentsStored.ToString();
     }
 
-    private void DisplayTime(float _timeToDisplay)
+    private void DisplayTime(float timeToDisplay)
     {
-        _timeToDisplay += 1;
+        timeToDisplay += 1;
 
-        float _minutes = Mathf.FloorToInt(_timeToDisplay / 60);
-        float _seconds = Mathf.FloorToInt(_timeToDisplay % 60);
+        float _minutes = Mathf.FloorToInt(timeToDisplay / 60);
+        float _seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
         timer.text = string.Format("{0:00}:{1:00}", _minutes, _seconds);
     }

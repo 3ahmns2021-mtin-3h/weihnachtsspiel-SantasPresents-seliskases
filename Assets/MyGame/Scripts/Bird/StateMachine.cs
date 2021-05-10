@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class StateMachine : MonoBehaviour
 {
     protected State State;
+    bool x;
 
     public enum BirdState
     {
@@ -14,6 +15,8 @@ public abstract class StateMachine : MonoBehaviour
         CaughtPresents,
         Scared
     }
+
+    [HideInInspector]
     public BirdState currentState;
 
     public void SetState(BirdState inputState, Bird bird)

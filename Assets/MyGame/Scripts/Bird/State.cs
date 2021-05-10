@@ -10,7 +10,6 @@ public abstract class State
     public static event FlyAction OnFlightFinished;
     public static Coroutine currentFlight;
 
-
     public State(Bird bird)
     {
         Bird = bird;

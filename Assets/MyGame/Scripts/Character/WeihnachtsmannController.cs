@@ -21,16 +21,37 @@ public class WeihnachtsmannController : MonoBehaviour
         if (paralyzed)
         {
             return;
-        }
-
-        float moveHorizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-        transform.position += new Vector3(moveHorizontal, 0, 0);
+        }        
 
         if (Vector3.Distance(transform.position, sack.transform.position) <= maxDistance && Input.GetKeyDown(keyCode))
         {
-            GameManager.numPresentsStored += numPresentsCarrying;
-            numPresentsCarrying = 0;
+            PlacePresents();
         }
+
+        Move();
+    }
+
+    private void Move()
+    {
+        float moveHorizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+        transform.position += new Vector3(moveHorizontal, 0, 0);
+    }
+
+    private void PlacePresents()
+    {
+        GameManager.numPresentsStored += numPresentsCarrying;
+        numPresentsCarrying = 0;
+    }
+
+    private void CarryPresent(GameObject present)
+    {
+        if (numPresentsCarrying >= maxPresents)
+        {
+            return;
+        }
+
+        numPresentsCarrying += 1;
+        Destroy(present);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -46,17 +67,6 @@ public class WeihnachtsmannController : MonoBehaviour
                 Destroy(collision.gameObject);
                 break;
         }
-    }
-
-    private void CarryPresent(GameObject present)
-    {
-        if (numPresentsCarrying >= maxPresents)
-        {
-            return;
-        }
-
-        numPresentsCarrying += 1;
-        Destroy(present);
     }
 
     private IEnumerator Paralyze()

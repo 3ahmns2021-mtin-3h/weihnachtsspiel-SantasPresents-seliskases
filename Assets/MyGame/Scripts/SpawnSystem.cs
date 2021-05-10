@@ -63,7 +63,6 @@ public class SpawnSystem : MonoBehaviour
         nextSpawnTime = Random.Range(spawnMinTime, spawnMaxTime);
     }
 
-
     private void SpawnPresent()
     {
         Vector2 spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
