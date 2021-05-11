@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public new Camera camera;
     public Vector3 cameraOffset;
     public float followSpeed;
     public float xMin;
 
     private Vector3 velocity = Vector3.zero;
     private Transform target;
-    private new Camera camera; 
 
     private void Start()
     {
-        camera = Camera.main;
         target = GameManager.currentWeihnachtsmann.transform;
     }
 

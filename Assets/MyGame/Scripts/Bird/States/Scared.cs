@@ -14,7 +14,7 @@ public class Scared : State
 
         Vector2 origin = Bird.transform.position;
         Vector2 destination = new Vector2(Bird.transform.position.x - 1000, Bird.transform.position.y);
-        float speed = Random.Range(Bird.minSpeed, Bird.maxSpeed);
+        float speed = Bird.maxSpeed * 1.5f;
 
         currentFlight = Bird.StartCoroutine(FlightAnimation(origin, destination, speed, Bird.standardCurve));
         yield break;

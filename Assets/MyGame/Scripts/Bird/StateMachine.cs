@@ -5,7 +5,6 @@ using UnityEngine;
 public abstract class StateMachine : MonoBehaviour
 {
     protected State State;
-    bool x;
 
     public enum BirdState
     {
@@ -25,7 +24,7 @@ public abstract class StateMachine : MonoBehaviour
         {
             StopCoroutine(State.currentFlight);
         }
-
+        
         switch(inputState)
         {
             case BirdState.Searching:

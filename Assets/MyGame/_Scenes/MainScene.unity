@@ -184,7 +184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7467419453108156439, guid: d7b82f5f8d5f6b147888c6633aadf17f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -239
+      value: -199
       objectReference: {fileID: 0}
     - target: {fileID: 7467419453108156439, guid: d7b82f5f8d5f6b147888c6633aadf17f, type: 3}
       propertyPath: m_SizeDelta.x
@@ -368,6 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 959851ef5ec316d408942fe9fad32bf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camera: {fileID: 0}
   cameraOffset: {x: 0, y: -180, z: -10}
   followSpeed: 5
   xMin: 0
@@ -549,10 +550,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02a8ab9f1fc35084d84b6dcdf12b9f5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1088536736}
   timer: {fileID: 1779479992}
   presentCounter: {fileID: 2056850038}
-  startTime: 60
 --- !u!114 &1088536736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -567,6 +566,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasObject: {fileID: 313812011}
   weihnachtsmann: {fileID: 1964369573}
+  sack: {fileID: 4109689021425120227, guid: d7b82f5f8d5f6b147888c6633aadf17f, type: 3}
+  startTime: 60
 --- !u!114 &1088536737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -579,15 +580,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e9f3be6d8f1914a97896af0024c4bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  present: {fileID: 5151480434703399931, guid: 874bdec1829d857499e2ff8c2acd3a5f, type: 3}
-  rock: {fileID: 9202130148575067202, guid: ec2d78097c6c19147b27c1d87aa410f8, type: 3}
-  bird: {fileID: 1782522936681573104, guid: 28e336d9833f5874f845b6e5f9cfdced, type: 3}
   xResolution: 10
-  spawnMinTime: 1
-  spawnMaxTime: 2
-  spawnHeight: 100
+  bird: {fileID: 1782522936681573104, guid: 28e336d9833f5874f845b6e5f9cfdced, type: 3}
   birdSpawnTime: 5
   useBird: 1
+  collectables:
+  - {fileID: 5151480434703399931, guid: 874bdec1829d857499e2ff8c2acd3a5f, type: 3}
+  - {fileID: 9202130148575067202, guid: ec2d78097c6c19147b27c1d87aa410f8, type: 3}
+  collectableSpawnMinTime: 1
+  collectableSpawnMaxTime: 2
+  collectableSpawnHeight: 320
 --- !u!114 &1088536738
 MonoBehaviour:
   m_ObjectHideFlags: 0

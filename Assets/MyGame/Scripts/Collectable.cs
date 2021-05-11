@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Collectables : MonoBehaviour
+public class Collectable : MonoBehaviour
 {
     private void OnCollisionEnter2D(Collision2D collision)
     {

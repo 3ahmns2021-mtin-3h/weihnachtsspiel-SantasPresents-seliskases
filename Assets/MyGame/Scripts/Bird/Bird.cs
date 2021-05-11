@@ -10,44 +10,29 @@ public class Bird : StateMachine
     public float maxSpeed;
     public float detectionRadius;
     public float maxDistance;
-    public float scareBirdRadius;
-    public KeyCode scareBirdKey;
+
+    public static bool isScared;
+
+    private void OnEnable()
+    {
+        WeihnachtsmannController.OnBirdScared += Scared;
+    }
 
     private void Start()
     {
         SetState(BirdState.BackToCenter, this);
     }
 
-    private void Update()
+    public void Scared()
     {
-        if (IsScared())
+        if(currentState != BirdState.Targeting)
         {
             SetState(BirdState.Scared, this);
-        }
+        }        
     }
 
-    private bool IsScared()
+    private void OnDisable()
     {
-        if(currentState == BirdState.Targeting)
-        {
-            return false;
-        }
-
-        if (!Input.GetKeyDown(scareBirdKey))
-        {
-            return false;
-        }
-
-        if (Vector2.Distance(transform.position, GameManager.currentWeihnachtsmann.transform.position) > scareBirdRadius)
-        {
-            return false;
-        }
-
-        if (GameManager.currentWeihnachtsmann.gameObject.GetComponent<WeihnachtsmannController>().paralyzed)
-        {
-            return false;
-        }
-
-        return true;
+        WeihnachtsmannController.OnBirdScared -= Scared;
     }
 }

@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class WeihnachtsmannController : MonoBehaviour
 {
-    public GameObject sack;
     [Range(50, 150)]
     public float speed = 100f;
     public float paralyzeDelay;
     public int maxPresents = 3;
-    public float maxDistance;
-    public KeyCode keyCode;
+    public float placePresentRadius;
+    public float scareBirdRadius;
+    public KeyCode scareBirdKey;
+    public KeyCode placePresentsKey;
     [HideInInspector]
     public bool paralyzed;
+
+    public delegate void ScareBird();
+    public static event ScareBird OnBirdScared;
 
     private int numPresentsCarrying;
 
@@ -23,9 +27,17 @@ public class WeihnachtsmannController : MonoBehaviour
             return;
         }        
 
-        if (Vector3.Distance(transform.position, sack.transform.position) <= maxDistance && Input.GetKeyDown(keyCode))
+        if (Vector3.Distance(transform.position, GameManager.currentSack.transform.position) < placePresentRadius && Input.GetKeyDown(placePresentsKey))
         {
             PlacePresents();
+        }
+
+        if (Input.GetKeyDown(scareBirdKey))
+        {
+            if(Vector2.Distance(transform.position, GameManager.currentBird.transform.position) < scareBirdRadius)
+            {
+                OnBirdScared();
+            }
         }
 
         Move();

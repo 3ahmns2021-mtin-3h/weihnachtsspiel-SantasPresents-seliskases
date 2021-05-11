@@ -5,20 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static Canvas canvas;
     public static GameObject currentWeihnachtsmann;
     public static GameObject currentSack;
+    public static GameObject currentBird;
     public static InvokeMenu playedLevel;
     public static float timeRemaining;
     public static int numPresentsStored;
 
     public Canvas canvasObject;
     public GameObject weihnachtsmann;
+    public GameObject sack;
     public float startTime;
 
     private void Awake()
     {
-        SetCanvas();
-        SetWeihnachtsmann();
+        canvas = canvasObject;
+        currentWeihnachtsmann = weihnachtsmann;
+        currentSack = sack;
 
         timeRemaining = startTime;
     }
@@ -42,16 +46,4 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
-    public void SetWeihnachtsmann()
-    {
-        currentWeihnachtsmann = weihnachtsmann;
-        currentSack = weihnachtsmann.GetComponent<WeihnachtsmannController>().sack;
-    }
-
-    private void SetCanvas()
-    {
-        canvas = canvasObject;
-    }
-    public static Canvas canvas;
 }
