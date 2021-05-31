@@ -13,7 +13,7 @@ public class Spawn : MonoBehaviour
 
         float xStep = (rightTopCorner.x - leftTopCorner.x) / (xResolution + 1);
         List<float> xCoordinates = new List<float>();
-
+        
         for (int i = 1; i < xResolution + 1; i++)
         {
             spawnPoints.Add(new Vector2(leftTopCorner.x + (xStep * i), leftTopCorner.y + spawnHeight));

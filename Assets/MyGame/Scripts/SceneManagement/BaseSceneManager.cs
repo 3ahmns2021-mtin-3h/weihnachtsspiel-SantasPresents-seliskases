@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BaseSceneManager : MonoBehaviour
 {
@@ -32,5 +33,19 @@ public class BaseSceneManager : MonoBehaviour
     private void Start()
     {
         instance = this;
+    }
+
+    public IEnumerator LoadAsynchronously(InvokeMenu currLevel, int sceneIndex)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+        GameManager.playedLevel = currLevel;
+
+        while (!operation.isDone)
+        {
+            float _progress = Mathf.Clamp01(operation.progress / 0.9f);
+            loadingSlider.value = _progress;
+
+            yield return null;
+        }
     }
 }
