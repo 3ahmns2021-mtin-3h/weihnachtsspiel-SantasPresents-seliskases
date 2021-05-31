@@ -11,11 +11,11 @@ public class SpawnManager : MonoBehaviour
     public bool useBird;
     [Header("Collectables")]
     public GameObject[] collectables;
-    public float collectableSpawnMinTime;
-    public float collectableSpawnMaxTime;
-    public float collectableSpawnHeight;
+    public float spawnMinTime;
+    public float spawnMaxTime;
+    public float spawnHeight;
 
-    private float nextCollectableTime;
+    private float timeUntilSpawn;
     private float time;
     private bool birdSpawned = false;
     private GameObject empty;
@@ -23,7 +23,7 @@ public class SpawnManager : MonoBehaviour
 
     private void Awake()
     {
-        spawnPoints = Spawn.SpawnPoints(xResolution, collectableSpawnHeight);
+        spawnPoints = Spawn.SpawnPoints(xResolution, spawnHeight);
 
         empty = new GameObject("Collectables");
         empty.transform.parent = GameManager.canvas.transform;
@@ -37,9 +37,9 @@ public class SpawnManager : MonoBehaviour
 
     private void Update()
     {
-        nextCollectableTime -= Time.deltaTime;
+        timeUntilSpawn -= Time.deltaTime;
 
-        if (nextCollectableTime < 0)
+        if (timeUntilSpawn < 0)
         {
             SpawnCollectable();            
         }
@@ -61,7 +61,7 @@ public class SpawnManager : MonoBehaviour
     private void SpawnCollectable()
     {
         Spawn.SpawnRandomObject(collectables, spawnPoints, empty.transform);
-        nextCollectableTime = Random.Range(collectableSpawnMinTime, collectableSpawnMaxTime);
+        timeUntilSpawn = Random.Range(spawnMinTime, spawnMaxTime);
     }
 }
     

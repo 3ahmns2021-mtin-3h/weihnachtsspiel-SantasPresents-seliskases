@@ -28,7 +28,7 @@ public class Bird : StateMachine
         if(currentState != BirdState.Targeting)
         {
             SetState(BirdState.Scared, this);
-        }        
+        }
     }
 
     private void OnDisable()

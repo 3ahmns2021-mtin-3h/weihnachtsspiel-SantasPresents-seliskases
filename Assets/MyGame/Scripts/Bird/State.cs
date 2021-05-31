@@ -24,7 +24,7 @@ public abstract class State
     {
         yield break;
     }
-
+       
     public virtual IEnumerator FlightAnimation(Vector3 origin, Vector3 destination, float speed, AnimationCurve curve)
     {
         YieldInstruction instruction = new WaitForEndOfFrame();

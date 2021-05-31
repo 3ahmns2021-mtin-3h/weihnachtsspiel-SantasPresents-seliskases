@@ -11,12 +11,12 @@ public class Spawn : MonoBehaviour
         Vector2 leftTopCorner = new Vector2(GameManager.canvas.pixelRect.width / -2, GameManager.canvas.pixelRect.height / 2);
         Vector2 rightTopCorner = new Vector2(GameManager.canvas.pixelRect.width / 2, GameManager.canvas.pixelRect.height / 2);
 
-        float xSummand = (rightTopCorner.x - leftTopCorner.x) / (xResolution + 1);
+        float xStep = (rightTopCorner.x - leftTopCorner.x) / (xResolution + 1);
         List<float> xCoordinates = new List<float>();
 
-        for (int i = 1; i <= xResolution; i++)
+        for (int i = 1; i < xResolution + 1; i++)
         {
-            spawnPoints.Add(new Vector2(leftTopCorner.x + (xSummand * i), leftTopCorner.y + spawnHeight));
+            spawnPoints.Add(new Vector2(leftTopCorner.x + (xStep * i), leftTopCorner.y + spawnHeight));
         }
 
         return spawnPoints.ToArray();
